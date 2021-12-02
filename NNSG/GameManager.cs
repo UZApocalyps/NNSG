@@ -30,17 +30,18 @@ namespace NNSG
         {
             //Instanciate Time
             Time timer = Time.GetInstance();
+            timer.elaspedTime = 0;
             //Start timer 
             //TODO
 
-            List<Person> people = new List<Person>();
             //Instanciate Goods
             Good food = new Good();
             food.name = "food";
             food.type = GoodType.Food;
             food.ammount = 100;
             food.price = 1;
-            
+            Warehouse.food = food;
+
             //Instanciate Job
             Job job = new Job(GoodType.Food);
             job.Name = "Farmer";
@@ -59,12 +60,12 @@ namespace NNSG
                     person.job = job;
                     job.persons.Add(person);
                 }
-                people.Add(person);
+                Person.people.Add(person);
             }
 
             //Instanciate Needs
 
-            foreach (var person in people)
+            foreach (var person in Person.people)
             {
                 Hunger hunger = new Hunger();
                 person.needs = new Need[1];
@@ -72,7 +73,7 @@ namespace NNSG
             }
 
             UI.getInstance().Write("Game is starting ...");
-            timer.StartTimer();
+            //timer.StartTimer();
             KeepConsoleAlive();
         }
 
@@ -80,7 +81,20 @@ namespace NNSG
         {
             while (Time.GetInstance() != null)
             {
-                Thread.Sleep(10000);
+                UI.getInstance().PrintArrow();
+                string command = UI.getInstance().Read();
+                switch (command)
+                {
+                    case "resources":
+                        UI.getInstance().Write("Food : [" + Warehouse.food.ammount + "] Population : ["+Person.people.Count+"] Day : ["+Time.GetInstance().elaspedTime+"]");
+                        break;
+                    case "next":
+                        Time.GetInstance().TickAll();
+                        UI.getInstance().Write("A new day has come");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
