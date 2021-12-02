@@ -11,7 +11,7 @@ namespace NNSG
         /// <summary>
         /// Return the single instance of this class
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Single instance of class Time </returns>
         public static Time GetInstance()
         {
             if (instance == null)
@@ -34,14 +34,19 @@ namespace NNSG
         private float tick_timer;
 
         /// <summary>
+        /// Tracks how much time has elapsed
+        /// </summary>
+        private int elaspedTime = 0;
+
+        /// <summary>
         /// List of subscribed item that implements ITick interface
         /// </summary>
         List<ITick> subscribers = new List<ITick>();
 
         /// <summary>
-        /// Subscribe an object that implemented ITick interface
+        /// Subscribe an object to the observer
         /// </summary>
-        /// <param name="newSubscriber"></param>
+        /// <param name="newSubscriber">Class that implements ITick interface</param>
         public void Subscribe(ITick newSubscriber)
         {
             if (!subscribers.Contains(newSubscriber))
@@ -49,9 +54,9 @@ namespace NNSG
         }
 
         /// <summary>
-        /// Unsubscribe an object that implemented ITick interface 
+        /// Unsubscribe an object from the observer
         /// </summary>
-        /// <param name="oldSubscriber"></param>
+        /// <param name="oldSubscriber">Class that implements ITick interface</param>
         public void Unsubscribe(ITick oldSubscriber)
         {
             subscribers.Remove(oldSubscriber);
@@ -66,6 +71,8 @@ namespace NNSG
             {
                 subscriber.Ticking();
             }
+
+            elaspedTime++;
         }
     }
 }
