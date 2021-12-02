@@ -18,7 +18,8 @@ namespace NNSG
 
             if (input == "1")
             {
-                GameInstance();
+                GameManager gm = GameManager.GetInstance();
+                gm.StartGame();
             }
         }
         static void bruh()
@@ -27,13 +28,6 @@ namespace NNSG
             {
                 Console.WriteLine("bruh");
                 Thread.Sleep(1000);
-            }
-        }
-        static void GameInstance()
-        {
-            while (false)
-            {
-                //TODO
             }
         }
     }

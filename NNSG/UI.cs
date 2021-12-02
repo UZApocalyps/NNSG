@@ -36,12 +36,10 @@ namespace NNSG
             Console.WriteLine(logo);
         }
 
-
         public void Write(string text)
         {
             Console.WriteLine(text);
         }
-
 
         public string Read()
         {
