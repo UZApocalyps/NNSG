@@ -61,15 +61,14 @@ namespace NNSG
                     job.persons.Add(person);
                 }
                 Person.people.Add(person);
-            }
 
-            //Instanciate Needs
-
-            foreach (var person in Person.people)
-            {
                 Hunger hunger = new Hunger();
+                hunger.name = "hunger";
+                hunger.level = new Random().Next(0, 100);
+
                 person.needs = new Need[1];
                 person.needs[(int)NeedsType.hunger] = hunger;
+
             }
 
             UI.getInstance().Write("Game is starting ...");
