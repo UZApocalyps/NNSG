@@ -73,14 +73,14 @@ namespace NNSG
 
             UI.getInstance().Write("Game is starting ...");
             timer.StartTimer();
-            MainLoop();
+            KeepConsoleAlive();
         }
 
-        private void MainLoop()
+        private void KeepConsoleAlive()
         {
-            while (true)
+            while (Time.GetInstance() != null)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(10000);
             }
         }
     }
