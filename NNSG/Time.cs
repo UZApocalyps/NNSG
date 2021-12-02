@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using System.Collections.Generic;
+using System.Timers;
 namespace NNSG
 {
     class Time
@@ -23,15 +21,13 @@ namespace NNSG
         }
 
         /// <summary>
-        /// Defines how much time should pass between each tick
+        /// Defines how much time should pass between each tick.
+        /// Changes to this value will take effect at the next tick
         /// 1 / [tick per second]
         /// </summary>
-        const float TICK_INTERVAL = 1 / 1;
+        private float tickInterval = 1 / 1;
 
-        /// <summary>
-        /// Keeps track of elapsed time after last tick
-        /// </summary>
-        private float tick_timer;
+        private Timer tickTimer;
 
         /// <summary>
         /// Tracks how much time has elapsed
@@ -65,14 +61,30 @@ namespace NNSG
         /// <summary>
         /// Makes the simulation advance by 1 step forward
         /// </summary>
-        public void Tick()
+        public void OnTick(object source, ElapsedEventArgs e)
         {
-            foreach(ITick subscriber in subscribers)
+            foreach (ITick subscriber in subscribers)
             {
                 subscriber.Ticking();
             }
 
             elaspedTime++;
+
+            // If tick intreval has changed
+            if (tickTimer.Interval != tickInterval)
+                tickTimer.Interval = tickInterval;
+        }
+
+        /// <summary>
+        /// Instantiate a new Timer and runs it
+        /// </summary>
+        public void StartTimer()
+        {
+            tickTimer = new Timer(tickInterval);
+
+            tickTimer.Elapsed += OnTick;
+            tickTimer.AutoReset = true;
+            tickTimer.Enabled = true;
         }
     }
 }
