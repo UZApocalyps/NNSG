@@ -14,6 +14,11 @@ namespace NNSG.Needs
         public Person person;
         public string name;
 
+        public Need()
+        {
+            Time.GetInstance().Subscribe(this);
+        }
+
         public void Ticking()
         {
             throw new NotImplementedException();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NNSG.Needs;
 using NNSG.Jobs;
+using System.Threading;
 namespace NNSG
 {
     public class GameManager
@@ -46,9 +47,6 @@ namespace NNSG
             job.persons = new List<Person>();
             job.quantityPerTick = 1;
 
-            //subscribe to timer
-            timer.Subscribe(job);
-
             //Instanciate Person
 
             for (int i = 0; i < 100; i++)
@@ -71,13 +69,19 @@ namespace NNSG
                 Hunger hunger = new Hunger();
                 person.needs = new Need[1];
                 person.needs[(int)NeedsType.hunger] = hunger;
-
-                //subscribe to timer
-                timer.Subscribe(hunger);
             }
 
+            UI.getInstance().Write("Game is starting ...");
+            timer.StartTimer();
+            MainLoop();
+        }
 
-
+        private void MainLoop()
+        {
+            while (true)
+            {
+                Thread.Sleep(1000);
+            }
         }
     }
 }

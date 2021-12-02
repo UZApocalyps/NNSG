@@ -8,7 +8,7 @@ namespace NNSG.Needs
     {
         public Hunger()
         {
-
+           
         }
     }
 }

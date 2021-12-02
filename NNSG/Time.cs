@@ -25,7 +25,7 @@ namespace NNSG
         /// Changes to this value will take effect at the next tick
         /// 1 / [tick per second]
         /// </summary>
-        private float tickInterval = 1 / 1;
+        private float tickInterval = 1000 / 1;
 
         private Timer tickTimer;
 

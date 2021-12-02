@@ -14,6 +14,7 @@ namespace NNSG.Jobs
         public Job(GoodType type)
         {
             goodType = type;
+            Time.GetInstance().Subscribe(this);
         }
         public void Ticking()
         {
