@@ -22,8 +22,16 @@ namespace NNSG
             return instance;
         }
 
+        /// <summary>
+        /// Instantiate
+        /// </summary>
         public void StartGame()
         {
+            //Instanciate Time
+            Time timer = Time.GetInstance();
+            //Start timer 
+            //TODO
+
             List<Person> people = new List<Person>();
             //Instanciate Goods
             Good food = new Good();
@@ -37,6 +45,9 @@ namespace NNSG
             job.Name = "Farmer";
             job.persons = new List<Person>();
             job.quantityPerTick = 1;
+
+            //subscribe to timer
+            timer.Subscribe(job);
 
             //Instanciate Person
 
@@ -60,9 +71,12 @@ namespace NNSG
                 Hunger hunger = new Hunger();
                 person.needs = new Need[1];
                 person.needs[(int)NeedsType.hunger] = hunger;
+
+                //subscribe to timer
+                timer.Subscribe(hunger);
             }
 
-            //Instanciate Time
+
 
         }
     }
