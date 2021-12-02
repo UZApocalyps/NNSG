@@ -21,7 +21,6 @@ namespace NNSG.Needs
 
         public void Ticking()
         {
-            throw new NotImplementedException();
         }
     }
 }

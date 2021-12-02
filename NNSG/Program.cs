@@ -11,7 +11,7 @@ namespace NNSG
             UI ui = UI.getInstance();
 
             ui.RenderLogo();
-            ui.Write("\n\n" + "To Start a game presse [1]");
+            ui.Write("\n\n" + "To Start a game press [1]");
             string input = ui.Read();
 
             if (input == "1")

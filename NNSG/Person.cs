@@ -12,5 +12,6 @@ namespace NNSG
         public int age;
         public Need[] needs;
         public Job job;
+        public static List<Person> people = new List<Person>();
     }
 }

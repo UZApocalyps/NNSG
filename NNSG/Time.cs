@@ -5,7 +5,6 @@ namespace NNSG
     class Time
     {
         private static Time instance;
-
         /// <summary>
         /// Return the single instance of this class
         /// </summary>
@@ -32,7 +31,7 @@ namespace NNSG
         /// <summary>
         /// Tracks how much time has elapsed
         /// </summary>
-        private int elaspedTime = 0;
+        public int elaspedTime = 0;
 
         /// <summary>
         /// List of subscribed item that implements ITick interface
@@ -61,20 +60,23 @@ namespace NNSG
         /// <summary>
         /// Makes the simulation advance by 1 step forward
         /// </summary>
-        public void OnTick(object source, ElapsedEventArgs e)
+        private void OnTick(object source, ElapsedEventArgs e)
         {
-            foreach (ITick subscriber in subscribers)
-            {
-                subscriber.Ticking();
-            }
-
-            elaspedTime++;
+            TickAll();
 
             // If tick intreval has changed
             if (tickTimer.Interval != tickInterval)
                 tickTimer.Interval = tickInterval;
         }
 
+        public void TickAll()
+        {
+            foreach (ITick subscriber in subscribers)
+            {
+                subscriber.Ticking();
+            }
+            elaspedTime++;
+        }
         /// <summary>
         /// Instantiate a new Timer and runs it
         /// </summary>

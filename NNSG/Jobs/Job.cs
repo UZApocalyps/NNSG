@@ -18,7 +18,6 @@ namespace NNSG.Jobs
         }
         public void Ticking()
         {
-            throw new NotImplementedException();
         }
     }
 }
