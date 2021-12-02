@@ -8,7 +8,7 @@ namespace NNSG.Jobs
     {
         private GoodType goodType;
         public string Name;
-        public float quantityPerTick;
+        public int quantityPerTick;
         public List<Person> persons;
 
         public Job(GoodType type)
@@ -16,8 +16,10 @@ namespace NNSG.Jobs
             goodType = type;
             Time.GetInstance().Subscribe(this);
         }
+
         public void Ticking()
         {
+            Warehouse.food.ammount += quantityPerTick * persons.Count;
         }
     }
 }
