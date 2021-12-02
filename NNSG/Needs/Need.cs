@@ -4,6 +4,10 @@ using System.Text;
 
 namespace NNSG.Needs
 {
+    public enum NeedsType
+    {
+        hunger
+    }
     abstract class Need : ITick
     {
         public float level;

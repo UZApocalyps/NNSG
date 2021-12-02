@@ -6,10 +6,6 @@ using System.Text;
 
 namespace NNSG
 {
-    public enum NeedsType
-    {
-        hunger
-    }
     class Person
     {
         public int id;
