@@ -38,7 +38,11 @@ namespace NNSG
 
         public void Write(string text)
         {
-            Console.WriteLine(text);
+            Console.WriteLine("================================================================\n" + text + "\n================================================================");
+        }
+        public void PrintArrow()
+        {
+            Console.Write("-> ");
         }
 
         public string Read()
