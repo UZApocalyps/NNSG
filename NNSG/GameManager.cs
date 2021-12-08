@@ -9,9 +9,11 @@ namespace NNSG
     public class GameManager
     {
         private static GameManager instance;
+        private Config config;
         private GameManager()
         {
             //TODO instanciate objects
+            config = Config.getInstance();
         }
 
         public static GameManager GetInstance()
@@ -30,7 +32,7 @@ namespace NNSG
         {
             //Instanciate Time
             Time timer = Time.GetInstance();
-            timer.elaspedTime = 1;
+            timer.elaspedTime = config.firstDay;
             //Start timer 
             //TODO
 
@@ -38,7 +40,7 @@ namespace NNSG
             Good food = new Good();
             food.name = "food";
             food.type = GoodType.Food;
-            food.ammount = 100;
+            food.ammount = config.food;
             food.price = 1;
             Warehouse.food = food;
 
@@ -50,12 +52,12 @@ namespace NNSG
 
             //Instanciate Person
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < config.people; i++)
             {
                 Person person = new Person();
                 person.id = new Random().Next(0,int.MaxValue);
                 person.age = new Random().Next(10, 50);
-                if (i < 30)
+                if (i < config.farmers)
                 {
                     person.job = job;
                     job.persons.Add(person);
