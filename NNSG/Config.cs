@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.IO;
-
+using Newtonsoft.Json;
 
 namespace NNSG
 {
@@ -17,15 +16,28 @@ namespace NNSG
 
         private Config()
         {
-            Config config =  JsonSerializer.Deserialize<Config>(File.ReadAllText("Config.json"));
+            
         }
 
-        public Config getInstance()
+        public static Config getInstance()
         {
             if(instance == null){
                 instance = new Config();
             }
+            instance.ImportConfig();
             return instance;
+        }
+
+        private void ImportConfig()
+        {
+            if (!File.Exists("Config.json"))
+            {
+                File.WriteAllText("Config.json", JsonConvert.SerializeObject(this));
+            }
+            else
+            {
+                instance = JsonConvert.DeserializeObject<Config>(File.ReadAllText("Config.json"));
+            }
         }
     }
 }

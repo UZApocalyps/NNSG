@@ -13,5 +13,12 @@ namespace NNSG
         public Need[] needs;
         public Job job;
         public static List<Person> people = new List<Person>();
+
+
+        public void AddJob(Job job)
+        {
+            this.job = job;
+            job.persons.Add(this);
+        }
     }
 }
