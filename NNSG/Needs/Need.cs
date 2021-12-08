@@ -10,7 +10,7 @@ namespace NNSG.Needs
     }
     abstract class Need : ITick
     {
-        public float level;
+        public int level;
         public Person person;
         public string name;
 
@@ -21,6 +21,16 @@ namespace NNSG.Needs
 
         public void Ticking()
         {
+            int chance = new Random().Next(0, 100);
+            if (chance > level)
+            {
+                level = chance;
+                Warehouse.food.ammount--;
+            }
+            else
+            {
+                level -= new Random().Next(1, 15);
+            }
         }
     }
 }
