@@ -30,51 +30,19 @@ namespace NNSG
         /// </summary>
         public void StartGame()
         {
-            //Instanciate Time
-            Time timer = Time.GetInstance();
-            timer.elaspedTime = config.firstDay;
-            //Start timer 
-            //TODO
+            CreateTimer(config.firstDay);
 
-            //Instanciate Goods
-            Good food = new Good();
-            food.name = "food";
-            food.type = GoodType.Food;
-            food.ammount = config.food;
-            food.price = 1;
-            Warehouse.food = food;
+            CreateGoods();
 
-            //Instanciate Job
-            Job job = new Job(GoodType.Food);
-            job.Name = "Farmer";
-            job.persons = new List<Person>();
-            job.quantityPerTick = 1;
+            AddFood(config.food);
 
-            //Instanciate Person
+            CreateJobs();
 
-            for (int i = 0; i < config.people; i++)
-            {
-                Person person = new Person();
-                person.id = new Random().Next(0,int.MaxValue);
-                person.age = new Random().Next(10, 50);
-                if (i < config.farmers)
-                {
-                    person.job = job;
-                    job.persons.Add(person);
-                }
-                Person.people.Add(person);
+            AddPeople(config.people);
 
-                Hunger hunger = new Hunger();
-                hunger.name = "hunger";
-                hunger.level = new Random().Next(0, 100);
-
-                person.needs = new Need[1];
-                person.needs[(int)NeedsType.hunger] = hunger;
-
-            }
-
+            AddFarmers(config.farmers);
+            
             UI.getInstance().Write("Game is starting ...");
-            //timer.StartTimer();
             KeepConsoleAlive();
         }
 
@@ -111,6 +79,103 @@ namespace NNSG
                     }
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Create timer and start it 
+        /// </summary>
+        /// <param name="startTime">Begin day</param>
+        private void CreateTimer(int startTime)
+        {
+            Time timer = Time.GetInstance();
+            timer.elaspedTime = startTime;
+            //timer.StartTimer();
+
+        }
+
+        private void CreateGoods()
+        {
+            Good food = new Good();
+            food.name = "food";
+            food.type = GoodType.Food;
+            food.ammount = 0;
+            food.price = 1;
+        }
+
+        /// <summary>
+        /// Add food 
+        /// </summary>
+        /// <param name="ammount">Ammount of food to add</param>
+        private void AddFood(int ammount)
+        {
+            
+            Warehouse.food.ammount += ammount;
+        }
+
+        /// <summary>
+        /// Create Jobs
+        /// </summary>
+        private void CreateJobs()
+        {
+            Job farmer = new Job(GoodType.Food);
+            farmer.Name = "Farmer";
+            farmer.persons = new List<Person>();
+            farmer.quantityPerTick = 1;
+            Job.jobs.Add(JobType.Farmer, farmer);
+        }
+
+        /// <summary>
+        /// Add specific ammount of farmers
+        /// </summary>
+        /// <param name="farmers">Ammount of farmers you want to add</param>
+        private void AddFarmers(int farmers)
+        {
+            int addedFarmers = 0;
+            Job farmer = Job.jobs[JobType.Farmer];
+            foreach (var person in Person.people.FindAll(person=> person.job == null))
+            {
+                person.AddJob(farmer);
+                if (addedFarmers > farmers)
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add new people to population
+        /// </summary>
+        /// <param name="ammount"></param>
+        private void AddPeople(int ammount)
+        {
+            for (int i = 0; i < ammount; i++)
+            {
+                Person person = new Person();
+                person.id = Randomizer.Range(0,int.MaxValue);
+                person.age = Randomizer.Range(10, 50);
+                Person.people.Add(person);
+
+                
+
+                person.needs = new Need[1];
+                person.needs[(int)NeedsType.hunger] = AddHunger(0);
+
+            }
+        }
+
+        /// <summary>
+        /// Create a hunger need
+        /// </summary>
+        /// <param name="level">Level of need</param>
+        /// <returns>Hunger need</returns>
+        private Hunger AddHunger(int level)
+        {
+            Hunger hunger = new Hunger();
+            hunger.name = "hunger";
+            hunger.level = level;
+
+            return hunger;
         }
     }
 }

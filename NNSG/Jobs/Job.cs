@@ -4,8 +4,13 @@ using System.Text;
 
 namespace NNSG.Jobs
 {
+    public enum JobType
+    {
+        Farmer
+    }
     class Job : ITick
     {
+        public static Dictionary<JobType,Job> jobs = new Dictionary<JobType,Job>();
         private GoodType goodType;
         public string Name;
         public int quantityPerTick;
