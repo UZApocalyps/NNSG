@@ -21,10 +21,15 @@ namespace NNSG.Needs
 
         public void Ticking()
         {
-            if (new Random().Next(0,100) > level)
+            int chance = new Random().Next(0, 100);
+            if (chance > level)
             {
-                level = 100;
+                level = chance;
                 Warehouse.food.ammount--;
+            }
+            else
+            {
+                level -= new Random().Next(1, 15);
             }
         }
     }

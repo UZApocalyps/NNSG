@@ -30,7 +30,7 @@ namespace NNSG
         {
             //Instanciate Time
             Time timer = Time.GetInstance();
-            timer.elaspedTime = 0;
+            timer.elaspedTime = 1;
             //Start timer 
             //TODO
 
@@ -93,6 +93,20 @@ namespace NNSG
                         break;
                     default:
                         break;
+                }
+                string[] splitCommand = command.Split(' ');
+                if (splitCommand.Length > 1)
+                {
+                    if (splitCommand[0] == "next")
+                    {
+                        for (int i = 0; i < int.Parse(splitCommand[1]); i++)
+                        {
+                            Time.GetInstance().TickAll();
+
+                        }
+                        UI.getInstance().Write(int.Parse(splitCommand[1]) + " days have gone");
+
+                    }
                 }
             }
         }
