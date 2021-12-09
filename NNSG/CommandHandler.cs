@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NNSG.Jobs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -29,11 +30,23 @@ namespace NNSG
                 case "restart":
                     GameManager.GetInstance().Restart();
                     break;
+                case "jobs":
+                    PrintJobs();
+                    break;
                 default:
                     break;
             }
             NextDay(command);
            
+        }
+
+        private static void PrintJobs()
+        {
+            UI.getInstance().Write("Jobs: ");
+            foreach (var job in Job.jobs)
+            {
+                UI.getInstance().Write(job.Key.ToString() + ": " + job.Value.persons.Count.ToString());
+            }
         }
 
         private static void PrintResources()
