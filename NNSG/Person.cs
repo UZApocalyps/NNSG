@@ -20,5 +20,13 @@ namespace NNSG
             this.job = job;
             job.persons.Add(this);
         }
+
+        /// <summary>
+        /// Delete object
+        /// </summary>
+        public void Dispose()
+        {
+            this.Equals(null);
+        }
     }
 }

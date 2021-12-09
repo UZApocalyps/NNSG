@@ -45,40 +45,25 @@ namespace NNSG
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
         }
+        public void Restart()
+        {
+            Warehouse.food = null;
+            foreach (var person in Person.people)
+            {
+                person.Dispose();
+            }
+            foreach (var job in Job.jobs)
+            {
+                job.Value.Dispose();
+            }
 
+            Person.people.Clear();
+            Job.jobs.Clear();   
+            StartGame();
+        }
         private void KeepConsoleAlive()
         {
-            while (Time.GetInstance() != null)
-            {
-                UI.getInstance().PrintArrow();
-                string command = UI.getInstance().Read();
-                switch (command)
-                {
-                    case "resources":
-                        UI.getInstance().Write("Food : [" + Warehouse.food.ammount + "] Population : ["+Person.people.Count+"] Day : ["+Time.GetInstance().elaspedTime+"]");
-                        break;
-                    case "next":
-                        Time.GetInstance().TickAll();
-                        UI.getInstance().Write("A new day has come");
-                        break;
-                    default:
-                        break;
-                }
-                string[] splitCommand = command.Split(' ');
-                if (splitCommand.Length > 1)
-                {
-                    if (splitCommand[0] == "next")
-                    {
-                        for (int i = 0; i < int.Parse(splitCommand[1]); i++)
-                        {
-                            Time.GetInstance().TickAll();
-
-                        }
-                        UI.getInstance().Write(int.Parse(splitCommand[1]) + " days have gone");
-
-                    }
-                }
-            }
+            CommandHandler.handle();
         }
 
 
@@ -101,6 +86,7 @@ namespace NNSG
             food.type = GoodType.Food;
             food.ammount = 0;
             food.price = 1;
+            Warehouse.food = food;
         }
 
         /// <summary>

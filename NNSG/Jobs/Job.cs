@@ -26,5 +26,13 @@ namespace NNSG.Jobs
         {
             Warehouse.food.ammount += quantityPerTick * persons.Count;
         }
+
+        /// <summary>
+        /// Delete object
+        /// </summary>
+        public void Dispose()
+        {
+            this.Equals(null);
+        }
     }
 }
