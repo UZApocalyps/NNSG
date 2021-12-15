@@ -78,3 +78,40 @@ La croissance de la population est influençée par le niveau de "happiness" glo
 Si le bonheur est au-dessus de la moyenne (50) il y a des nouvelles "person" qui rejoignent notre population (par tick).
 
 Plus le niveau est haut plus le nombres de personnes augument rapidement.
+
+
+## Itération 3
+
+Ajout des évenements. Des évenements peuvent être déclenché aléatoirement durant la partie. 
+Ces évenements vont influencer en bien ou en mal les resources, la population ou le bonheur.
+
+Des évenements situationnels peuvent être provoqué par la situation actuelle des ressources exemple : évenement "Famine"  causée par un manque de "Food" par rapport à la population.
+
+
+### Évenements aléatoires
+
+    - Catastrophes naturelles
+        - météor, tornade, incendie, tsunami, tremblement de terre
+    - Pandémie
+        - Covid, Peste, Ebola
+    - Guerre
+    - Bonne récolte
+    - Accident national 
+        - Accident nucléaire
+        - terrorisme
+
+### Évenements situationnels
+    
+    - Famine
+    - Rébélion
+    - Aide internationale 
+    - Baby Boom
+
+
+
+## Itération 4
+
+Intégrer la simulation à Unity
+
+### UI 
+    - 

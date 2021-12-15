@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NNSG.Jobs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -29,6 +30,9 @@ namespace NNSG
                 case "restart":
                     GameManager.GetInstance().Restart();
                     break;
+                case "jobs":
+                    PrintJobs();
+                    break;
                 default:
                     break;
             }
@@ -36,25 +40,22 @@ namespace NNSG
            
         }
 
+        private static void PrintJobs()
+        {
+            UI.getInstance().Write("Jobs: ");
+            foreach (var job in Job.jobs)
+            {
+                UI.getInstance().Write(job.Key.ToString() + ": " + job.Value.persons.Count.ToString());
+            }
+        }
+
         private static void PrintResources()
         {
-            UI.getInstance().Write("Food : [" + Warehouse.food.ammount + "] Population : [" + Person.people.Count + "] Day : [" + Time.GetInstance().elaspedTime + "]");
         }
 
         private static void NextDay(string command)
         {
-            string[] splitCommand = command.Split(' ');
-            if (splitCommand.Length > 1)
-            {
-                if (splitCommand[0] == "next")
-                {
-                    for (int i = 0; i < int.Parse(splitCommand[1]); i++)
-                    {
-                        Time.GetInstance().TickAll();
-                    }
-                    UI.getInstance().Write(int.Parse(splitCommand[1]) + " days have gone");
-                }
-            }
+           
         }
         private static void NextDay()
         {

@@ -122,7 +122,8 @@ namespace NNSG
             foreach (var person in Person.people.FindAll(person=> person.job == null))
             {
                 person.AddJob(farmer);
-                if (addedFarmers > farmers)
+                addedFarmers++;
+                if (addedFarmers >= farmers)
                 {
                     break;
                 }
