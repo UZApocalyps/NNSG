@@ -6,9 +6,14 @@ namespace NNSG.Commands
 {
     class CmdRestart : Command
     {
+        public CmdRestart(string cmd, string help)
+        {
+            command = cmd;
+            helpMessage = help;
+        }
         public override void Execute(List<string> args)
         {
-            throw new NotImplementedException();
+            GameManager.GetInstance().Restart();
         }
     }
 }

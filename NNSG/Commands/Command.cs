@@ -8,7 +8,7 @@ namespace NNSG.Commands
 
         public string command;
         public List<string> arguments = new List<string>();
-
+        public string helpMessage;
         public abstract void Execute(List<string>args);
     }
 }
