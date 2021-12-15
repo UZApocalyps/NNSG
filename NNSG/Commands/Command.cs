@@ -17,6 +17,7 @@ namespace NNSG.Commands
             Command.commands.Add("resources", new CmdResource());
             Command.commands.Add("restart", new CmdRestart());
             Command.commands.Add("next", new CmdSkipDay());
+            Command.commands.Add("help", new CmdHelp());
         }
     }
 }

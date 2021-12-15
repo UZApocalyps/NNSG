@@ -1,7 +1,5 @@
-﻿using NNSG.Jobs;
-using System;
+﻿using NNSG.Commands;
 using System.Collections.Generic;
-using System.Text;
 
 namespace NNSG
 {
@@ -20,11 +18,23 @@ namespace NNSG
         {
             string[] args = UI.getInstance().Read().Split(" ");
             List<string> arguments = new List<string>();
-            for (int i = 1; i < args.Length; i++)
+            if (Command.commands.ContainsKey(args[0]))
             {
-                arguments.Add(args[i]);
-            } 
-            Commands.Command.commands[args[0]].Execute(arguments);
+                for (int i = 1; i < args.Length; i++)
+                {
+                    arguments.Add(args[i]);
+                }
+                Command.commands[args[0]].Execute(arguments);
+
+            }
+            else
+            {
+
+                UI.getInstance().Write("Unknown command please type 'help' to see all available commands");
+
+            }
+
+
         }
     }
 }
