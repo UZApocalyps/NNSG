@@ -17,7 +17,7 @@ namespace NNSG
             //TODO instanciate objects
             config = Config.getInstance();
 
-            RegisterCommands();
+            Command.RegisterCommands();
         }
 
         public static GameManager GetInstance()
@@ -167,20 +167,6 @@ namespace NNSG
             hunger.level = level;
 
             return hunger;
-        }
-
-        private void RegisterCommands()
-        {
-            CmdJob cmdJob = new CmdJob("jobs", "List all the jobs with the number of workers");
-            CmdResource cmdResource = new CmdResource("resources", "List the resources");
-            CmdRestart cmdRestart = new CmdRestart("restart", "Restart the game");
-            CmdSkipDay cmdSkipDay = new CmdSkipDay("next", "Skip the day. You can add a number after the command to skip a specific ammount of days : next 30");
-
-            Command.commands.Add("jobs", cmdJob);
-            Command.commands.Add("resources", cmdResource);
-            Command.commands.Add("restart", cmdRestart);
-            Command.commands.Add("next", cmdSkipDay);
-
         }
     }
 }

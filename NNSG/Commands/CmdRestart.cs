@@ -6,10 +6,10 @@ namespace NNSG.Commands
 {
     class CmdRestart : Command
     {
-        public CmdRestart(string cmd, string help)
+        public CmdRestart()
         {
-            command = cmd;
-            helpMessage = help;
+            command = "restart";
+            helpMessage = "Restart the game";
         }
         public override void Execute(List<string> args)
         {

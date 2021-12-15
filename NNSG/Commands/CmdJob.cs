@@ -7,10 +7,11 @@ namespace NNSG.Commands
 {
     class CmdJob : Command
     {
-        public CmdJob(string cmd,string help)
+
+        public CmdJob()
         {
-            command = cmd;
-            helpMessage = help;
+            command = "jobs";
+            helpMessage = "List all the jobs with the number of workers";
         }
         public override void Execute(List<string> args)
         {

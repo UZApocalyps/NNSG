@@ -6,10 +6,10 @@ namespace NNSG.Commands
 {
     class CmdSkipDay : Command
     {
-        public CmdSkipDay(string cmd, string help)
+        public CmdSkipDay()
         {
-            command = cmd;
-            helpMessage = help;
+            command = "next";
+            helpMessage = "Skip the day. You can add a number after the command to skip a specific ammount of days : next 30";
         }
 
         public override void Execute(List<string> args)

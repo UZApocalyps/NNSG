@@ -6,10 +6,10 @@ namespace NNSG.Commands
 {
     class CmdResource : Command
     {
-        public CmdResource(string cmd, string help)
+        public CmdResource()
         {
-            command = cmd;
-            helpMessage = help;
+            command = "resources";
+            helpMessage = "List the resources";
         }
 
         public override void Execute(List<string>args)
