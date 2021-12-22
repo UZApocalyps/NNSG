@@ -6,14 +6,20 @@ using System.Text;
 
 namespace NNSG
 {
-    class Person
+    class Person : ITick
     {
         public int id;
         public int age;
-        public Need[] needs;
+        public List<Need> needs;
         public Job job;
         public static List<Person> people = new List<Person>();
 
+        public Person()
+        {
+            needs.Add(new Hunger(0));
+
+            Time.GetInstance().Subscribe(this);
+        }
 
         public void AddJob(Job job)
         {
@@ -27,6 +33,14 @@ namespace NNSG
         public void Dispose()
         {
             this.Equals(null);
+        }
+
+        public void Ticking()
+        {
+            foreach(Need need in needs)
+            {
+                need.Update();
+            }
         }
     }
 }
