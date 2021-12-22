@@ -6,9 +6,13 @@ namespace NNSG.Needs
 {
     class Hunger : Need
     {
-        public Hunger()
+        /// <summary>
+        /// Create a new need for a person
+        /// </summary>
+        /// <param name="value">Base satisfaction level of this need</param>
+        public Hunger(int value)
         {
-           
+            level = value;
         }
     }
 }
