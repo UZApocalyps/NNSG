@@ -14,6 +14,5 @@ namespace NNSG.Needs
         }
 
         public abstract void Consume();
-
     }
 }
