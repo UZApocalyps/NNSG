@@ -6,7 +6,21 @@ namespace NNSG.Jobs
 {
     class Tailor : Job
     {
-        public override int quantityPerTick { get => quantityPerTick; set => quantityPerTick = value; }
+        private static Tailor instance;
+
+        private Tailor()
+        {
+            quantityPerTick = 1;
+        }
+
+        public static Tailor GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Tailor();
+            }
+            return instance;
+        }
 
         public override void Ticking()
         {

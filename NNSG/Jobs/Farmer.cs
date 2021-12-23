@@ -6,12 +6,20 @@ namespace NNSG.Jobs
 {
     class Farmer : Job
     {
-
-        public Farmer()
+        private static Farmer instance;
+        private Farmer()
         {
             quantityPerTick = 1;
         }
-        public override int quantityPerTick { get => quantityPerTick; set => quantityPerTick = value; }
+
+        public static Farmer GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Farmer();
+            }
+            return instance;
+        }
 
         public override void Ticking()
         {

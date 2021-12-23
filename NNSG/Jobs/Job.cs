@@ -6,7 +6,9 @@ namespace NNSG.Jobs
 {
     abstract class Job : ITick
     {
-        public abstract int quantityPerTick { get; set; }
+        public int quantityPerTick;
         public abstract void Ticking();
+
+
     }
 }
