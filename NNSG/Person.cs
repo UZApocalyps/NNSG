@@ -21,7 +21,11 @@ namespace NNSG
         public Person()
         {
             // Create its needs
+            needs = new List<Need>();
             needs.Add(new Hunger(0));
+
+            // Update happiness to prevent a bug if happiness command is used before calling next a first time
+            UpdateHappiness();
 
             // Subscribe the person to update it at each tick
             Time.GetInstance().Subscribe(this);
@@ -58,7 +62,16 @@ namespace NNSG
         private void UpdateHappiness()
         {
             // Round down the average value of all needs to nearest int
-            happiness = (int)Math.Floor((needs.Sum(need => need.level) / (float)needs.Count));
+            happiness = Tools.Average(needs.Select(need => need.level).ToArray());
+        }
+
+        /// <summary>
+        /// Compute global happiness value
+        /// </summary>
+        /// <returns></returns>
+        public static int GetGlobalHappiness()
+        {
+            return Tools.Average(Person.people.Select(person => person.happiness).ToArray());
         }
     }
 }

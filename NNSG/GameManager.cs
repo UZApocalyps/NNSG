@@ -145,7 +145,7 @@ namespace NNSG
                 Person person = new Person();
                 person.id = Randomizer.Range(0,int.MaxValue);
                 person.age = Randomizer.Range(10, 50);
-                Person.people.Add(person);                
+                Person.people.Add(person);              
             }
         }
     }
