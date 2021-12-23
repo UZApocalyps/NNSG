@@ -22,7 +22,7 @@ namespace NNSG
         {
             // Create its needs
             needs = new List<Need>();
-            needs.Add(new Hunger(0));
+            needs.Add(new Hunger(100));
 
             // Update happiness to prevent a bug if happiness command is used before calling next a first time
             UpdateHappiness();
