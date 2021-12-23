@@ -145,28 +145,8 @@ namespace NNSG
                 Person person = new Person();
                 person.id = Randomizer.Range(0,int.MaxValue);
                 person.age = Randomizer.Range(10, 50);
-                Person.people.Add(person);
-
-                
-
-                person.needs = new Need[1];
-                person.needs[(int)NeedsType.hunger] = AddHunger(0);
-
+                Person.people.Add(person);              
             }
-        }
-
-        /// <summary>
-        /// Create a hunger need
-        /// </summary>
-        /// <param name="level">Level of need</param>
-        /// <returns>Hunger need</returns>
-        private Hunger AddHunger(int level)
-        {
-            Hunger hunger = new Hunger();
-            hunger.name = "hunger";
-            hunger.level = level;
-
-            return hunger;
         }
     }
 }
