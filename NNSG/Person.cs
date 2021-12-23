@@ -18,7 +18,6 @@ namespace NNSG
         public void AddJob(Job job)
         {
             this.job = job;
-            job.persons.Add(this);
         }
 
         /// <summary>

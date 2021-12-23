@@ -40,8 +40,6 @@ namespace NNSG
 
             AddFood(config.food);
 
-            CreateJobs();
-
             AddPeople(config.people);
 
             AddFarmers(config.farmers);
@@ -52,17 +50,7 @@ namespace NNSG
         public void Restart()
         {
             Warehouse.food = null;
-            foreach (var person in Person.people)
-            {
-                person.Dispose();
-            }
-            foreach (var job in Job.jobs)
-            {
-                job.Value.Dispose();
-            }
-
             Person.people.Clear();
-            Job.jobs.Clear();   
             StartGame();
         }
         private void KeepConsoleAlive()
@@ -103,17 +91,6 @@ namespace NNSG
             Warehouse.food.ammount += ammount;
         }
 
-        /// <summary>
-        /// Create Jobs
-        /// </summary>
-        private void CreateJobs()
-        {
-            Job farmer = new Job(GoodType.Food);
-            farmer.Name = "Farmer";
-            farmer.persons = new List<Person>();
-            farmer.quantityPerTick = 1;
-            Job.jobs.Add(JobType.Farmer, farmer);
-        }
 
         /// <summary>
         /// Add specific ammount of farmers
@@ -122,7 +99,7 @@ namespace NNSG
         private void AddFarmers(int farmers)
         {
             int addedFarmers = 0;
-            Job farmer = Job.jobs[JobType.Farmer];
+            Farmer farmer = Farmer.GetInstance();
             foreach (var person in Person.people.FindAll(person=> person.job == null))
             {
                 person.AddJob(farmer);

@@ -15,10 +15,8 @@ namespace NNSG.Commands
         }
         public override void Execute(List<string> args)
         {
-            foreach (var job in Job.jobs)
-            {
-                UI.getInstance().Write(job.Key.ToString() + ": " + job.Value.persons.Count.ToString());
-            }
+            UI.getInstance().Write("Farmers : " + Person.people.FindAll(f => f.job is Farmer).Count);
+            UI.getInstance().Write("Tailors : " + Person.people.FindAll(f => f.job is Tailor).Count);
         }
     }
 }

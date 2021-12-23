@@ -4,35 +4,11 @@ using System.Text;
 
 namespace NNSG.Jobs
 {
-    public enum JobType
+    abstract class Job : ITick
     {
-        Farmer
-    }
-    class Job : ITick
-    {
-        public static Dictionary<JobType,Job> jobs = new Dictionary<JobType,Job>();
-        private GoodType goodType;
-        public string Name;
         public int quantityPerTick;
-        public List<Person> persons;
+        public abstract void Ticking();
 
-        public Job(GoodType type)
-        {
-            goodType = type;
-            Time.GetInstance().Subscribe(this);
-        }
 
-        public void Ticking()
-        {
-            Warehouse.food.ammount += quantityPerTick * persons.Count;
-        }
-
-        /// <summary>
-        /// Delete object
-        /// </summary>
-        public void Dispose()
-        {
-            this.Equals(null);
-        }
     }
 }
