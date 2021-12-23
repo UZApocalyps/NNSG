@@ -8,10 +8,10 @@ namespace NNSG
     {
         private static Random randNumber = new Random();
 
-        public static bool Probability(float chances)
+        public static bool Probability(float probability)
         {
             int number = randNumber.Next(0, 100);
-            return number < chances;
+            return number < probability;
         }
 
         public static int Range(int from, int to ) //To is exclusive

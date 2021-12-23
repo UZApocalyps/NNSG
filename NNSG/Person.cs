@@ -16,7 +16,7 @@ namespace NNSG
 
         public Person()
         {
-            needs.Add(new Hunger(0));
+            needs.Add(new Hunger(100));
 
             Time.GetInstance().Subscribe(this);
         }
