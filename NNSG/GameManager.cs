@@ -86,7 +86,6 @@ namespace NNSG
         private void CreateGoods()
         {
             Good food = new Good();
-            food.name = "food";
             food.type = GoodType.Food;
             food.ammount = 0;
             food.price = 1;
