@@ -20,6 +20,9 @@ namespace NNSG
         /// </summary>
         public Person()
         {
+            id = Randomizer.Range(0, int.MaxValue);
+            age = Randomizer.Range(10, 50);
+
             // Create its needs
             needs = new List<Need>();
             needs.Add(new Hunger(Randomizer.Range(0, 100)));

@@ -49,6 +49,7 @@ namespace NNSG
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
         }
+
         public void Restart()
         {
             Warehouse.food = null;
@@ -56,6 +57,7 @@ namespace NNSG
             {
                 person.Dispose();
             }
+
             foreach (var job in Job.jobs)
             {
                 job.Value.Dispose();
@@ -79,8 +81,6 @@ namespace NNSG
         {
             Time timer = Time.GetInstance();
             timer.elaspedTime = startTime;
-            //timer.StartTimer();
-
         }
 
         private void CreateGoods()
@@ -98,8 +98,7 @@ namespace NNSG
         /// </summary>
         /// <param name="ammount">Ammount of food to add</param>
         private void AddFood(int ammount)
-        {
-            
+        {            
             Warehouse.food.ammount += ammount;
         }
 
@@ -142,10 +141,7 @@ namespace NNSG
         {
             for (int i = 0; i < ammount; i++)
             {
-                Person person = new Person();
-                person.id = Randomizer.Range(0,int.MaxValue);
-                person.age = Randomizer.Range(10, 50);
-                Person.people.Add(person);              
+                Person.people.Add(new Person());              
             }
         }
     }
