@@ -6,7 +6,9 @@ namespace NNSG
 {
     public enum GoodType
     {
-        Food
+        Food,
+        Clothes,
+        Vehicule
     }
     class Good
     {
