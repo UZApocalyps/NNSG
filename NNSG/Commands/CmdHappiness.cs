@@ -7,7 +7,6 @@ namespace NNSG.Commands
 {
     class CmdHappiness : Command
     {
-
         public CmdHappiness()
         {
             command = "happiness";
