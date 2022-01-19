@@ -1,0 +1,17 @@
+{
+  "meteor": [
+    {
+      "messages": [ "Un mététor tombe du ciel.", "Il touche la terre à une vitesse incroyable.", "Vous sentez la terre trembler lors de l'impacte", "Vous savez déjà que beaucoup de vos ne s'en sortiront pas..." ]
+    }
+  ],
+  "fire": [
+    {
+      "messages": [ "Un incendie s'est déclencher dans votre ville.", "malgré vos efforts vous ne parvenez pas à sauver le bâtiment. " ]
+    }
+  ],
+  "earthquake": [
+    {
+      "messages": [ "Vous vous faites réveiller par une secousse.","La terre tremble de plus en plus et vous entendez des cris." ]
+    }
+  ]
+}
