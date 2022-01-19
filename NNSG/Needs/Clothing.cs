@@ -13,9 +13,9 @@ namespace NNSG.Needs
 
         public override void Consume()
         {
-            if (Warehouse.clothes.ammount > 0 && Randomizer.Probability(100 - level))
+            if (Warehouse.clothes.amount > 0 && Randomizer.Probability(100 - level))
             {
-                Warehouse.clothes.ammount--;
+                Warehouse.clothes.amount--;
                 level = 100;
             }
             else
