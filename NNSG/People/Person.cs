@@ -92,11 +92,30 @@ namespace NNSG
             return id;
         }
 
+        /// <summary>
+        /// Remove people randomly 
+        /// </summary>
+        /// <param name="amount"></param>
         public static void RemovePeople(int amount)
         {
             if (amount > people.Count)
             {
                 // GAME OVER
+            }
+            else
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    if (people.Count > 0)
+                    {
+                        int index = Randomizer.Range(0, people.Count);
+                        people.RemoveAt(index);
+                    }
+                    else
+                    {
+                        // GAME OVER
+                    }
+                }
             }
         }
     }

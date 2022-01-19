@@ -24,7 +24,7 @@ namespace NNSG
             }
             else if (happiness <= decreaseThreshold)
             {
-                
+                Person.RemovePeople(1);
             }
         }
     }
