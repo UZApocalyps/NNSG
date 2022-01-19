@@ -19,8 +19,12 @@ namespace NNSG
             int happiness = Person.GetGlobalHappiness();
 
             if (happiness >= increaseThreshold)
-            {
+            {                
                 Person.people.Add(new Person());
+            }
+            else if (happiness <= decreaseThreshold)
+            {
+                
             }
         }
     }

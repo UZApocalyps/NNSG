@@ -91,5 +91,13 @@ namespace NNSG
             nextAvailableID++;
             return id;
         }
+
+        public static void RemovePeople(int amount)
+        {
+            if (amount > people.Count)
+            {
+                // GAME OVER
+            }
+        }
     }
 }
