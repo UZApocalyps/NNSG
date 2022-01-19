@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NNSG.Needs;
 using NNSG.Jobs;
+using NNSG.Goods;
 using System.Threading;
 using NNSG.Commands;
 
@@ -38,7 +39,7 @@ namespace NNSG
 
             CreateGoods();
 
-            AddFood(config.food);
+            CreateJobs();
 
             AddPeople(config.people);
 
@@ -71,24 +72,17 @@ namespace NNSG
 
         }
 
-        private void CreateGoods()
-        {
-            Good food = new Good();
-            food.name = "food";
-            food.type = GoodType.Food;
-            food.ammount = 0;
-            food.price = 1;
-            Warehouse.food = food;
-        }
-
         /// <summary>
-        /// Add food 
+        /// Create goods and set their amount & price
         /// </summary>
-        /// <param name="ammount">Ammount of food to add</param>
-        private void AddFood(int ammount)
-        {
-            
-            Warehouse.food.ammount += ammount;
+        /// <param name="amountValue">The total of the good</param>
+        /// <param name="priceValue">The price of the good</param>
+        private void CreateGoods()
+        {      
+            Warehouse.food = new Food(config.food, 1);
+            Warehouse.clothes = new Clothes(config.clothes, 10);
+            Warehouse.vehicles = new Vehicles(config.vehicles, 1000);
+            Warehouse.furniture = new Furniture(config.furniture, 100);
         }
 
 

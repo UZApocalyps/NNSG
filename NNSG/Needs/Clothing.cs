@@ -4,22 +4,18 @@ using System.Text;
 
 namespace NNSG.Needs
 {
-    class Hunger : Need
+    class Clothing : Need
     {
-        /// <summary>
-        /// Create a new need for a person
-        /// </summary>
-        /// <param name="value">Base satisfaction level of this need</param>
-        public Hunger(int value)
+        public Clothing(int value)
         {
             level = value;
         }
 
         public override void Consume()
         {
-            if (Warehouse.food.amount > 0 && Randomizer.Probability(100 - level))
+            if (Warehouse.clothes.amount > 0 && Randomizer.Probability(100 - level))
             {
-                Warehouse.food.amount--;
+                Warehouse.clothes.amount--;
                 level = 100;
             }
             else
