@@ -3,6 +3,10 @@ using NNSG;
 
 namespace NNSG
 {
+    /// <summary>
+    /// It represents every Person as a single entity.
+    /// It allows to tick it globally and to do it once all Person has been updated.
+    /// </summary>
     public class Population : ITick
     {
         const string HAPPINESS_COMMAND_NAME = "happiness";
