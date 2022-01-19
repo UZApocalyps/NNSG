@@ -42,10 +42,13 @@ namespace NNSG
             AddPeople(config.people);
 
             AddFarmers(config.farmers);
+
+            CreatePopulation();
             
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
         }
+
         public void Restart()
         {
             Warehouse.food = null;
@@ -66,8 +69,6 @@ namespace NNSG
         {
             Time timer = Time.GetInstance();
             timer.elaspedTime = startTime;
-            //timer.StartTimer();
-
         }
 
         /// <summary>
@@ -111,11 +112,13 @@ namespace NNSG
         {
             for (int i = 0; i < ammount; i++)
             {
-                Person person = new Person();
-                person.id = Randomizer.Range(0,int.MaxValue);
-                person.age = Randomizer.Range(10, 50);
-                Person.people.Add(person);              
+                Person.people.Add(new Person());              
             }
+        }
+
+        private void CreatePopulation()
+        {
+            new Population();
         }
     }
 }

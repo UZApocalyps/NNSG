@@ -14,7 +14,7 @@ namespace NNSG
             return number < probability;
         }
 
-        public static int Range(int from, int to ) //To is exclusive
+        public static int Range(int from, int to) //To is exclusive
         {
             return randNumber.Next(from, to);
         }
