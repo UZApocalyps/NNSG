@@ -8,7 +8,9 @@ namespace NNSG
 {
     class Person : ITick
     {
-        public int id;
+        private static uint nextAvailableID = 0;
+
+        public uint id;
         public int age;
         public List<Need> needs;
         public Job job;
@@ -20,7 +22,10 @@ namespace NNSG
         /// </summary>
         public Person()
         {
-            id = Randomizer.Range(0, int.MaxValue);
+            // Set unique ID 
+            id = GetNextID();
+
+            // Randomize age
             age = Randomizer.Range(10, 50);
 
             // Create its needs
@@ -78,6 +83,13 @@ namespace NNSG
         public static int GetGlobalHappiness()
         {
             return Tools.Average(Person.people.Select(person => person.happiness).ToArray());
+        }
+
+        private uint GetNextID()
+        {
+            uint id = nextAvailableID;
+            nextAvailableID++;
+            return id;
         }
     }
 }
