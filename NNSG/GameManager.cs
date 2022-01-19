@@ -39,8 +39,6 @@ namespace NNSG
 
             CreateGoods();
 
-            CreateJobs();
-
             AddPeople(config.people);
 
             AddFarmers(config.farmers);

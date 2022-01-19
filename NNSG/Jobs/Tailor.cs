@@ -24,7 +24,7 @@ namespace NNSG.Jobs
 
         public override void Ticking()
         {
-            Warehouse.clothes.ammount += 1;
+            Warehouse.clothes.amount += 1;
         }
     }
 }
