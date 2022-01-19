@@ -45,6 +45,8 @@ namespace NNSG
             AddPeople(config.people);
 
             AddFarmers(config.farmers);
+
+            CreatePopulation();
             
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
@@ -143,6 +145,11 @@ namespace NNSG
             {
                 Person.people.Add(new Person());              
             }
+        }
+
+        private void CreatePopulation()
+        {
+            new Population();
         }
     }
 }

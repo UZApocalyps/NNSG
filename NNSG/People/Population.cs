@@ -11,6 +11,11 @@ namespace NNSG
         public float increaseThreshold = 67;
         public float decreaseThreshold = 33;
 
+        public Population()
+        {
+            Time.GetInstance().Subscribe(this);
+        }
+
         /// <summary>
         /// Will evaluate current global happiness and increase or decrease population
         /// </summary>
