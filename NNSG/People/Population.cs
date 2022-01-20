@@ -15,6 +15,12 @@ namespace NNSG
         public float increaseThreshold = 67;
         public float decreaseThreshold = 33;
 
+        /// <summary>
+        /// Allow to adjust how much population will change
+        /// 0.01f = 1%
+        /// </summary>
+        public float changeFactor = 0.01f;
+
         public Population()
         {
             Time.GetInstance().Subscribe(this);
@@ -29,12 +35,23 @@ namespace NNSG
 
             if (happiness >= increaseThreshold)
             {                
-                Person.people.Add(new Person());
+                Person.AddPeople(PopulationChange());
             }
             else if (happiness <= decreaseThreshold)
             {
-                Person.RemovePeople(1);
+                Person.RemovePeople(PopulationChange());
             }
+        }
+
+        /// <summary>
+        /// Calculates the population changed based on total population and changeFactor
+        /// </summary>
+        /// <returns></returns>
+        private int PopulationChange()
+        {
+            int change = (int)Math.Ceiling(changeFactor * Person.people.Count);
+
+            return change;
         }
     }
 }

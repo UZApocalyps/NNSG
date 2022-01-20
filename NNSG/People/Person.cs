@@ -92,6 +92,21 @@ namespace NNSG
         }
 
         /// <summary>
+        /// Add new people
+        /// </summary>
+        /// <param name="amount"></param>
+        public static void AddPeople(int amount)
+        {
+            if (amount > 0)
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    people.Add(new Person());
+                }
+            }
+        }
+
+        /// <summary>
         /// Remove people randomly 
         /// </summary>
         /// <param name="amount"></param>
