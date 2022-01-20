@@ -43,6 +43,8 @@ namespace NNSG
 
             AddFarmers(config.farmers);
 
+            AddTailors(config.tailors);
+
             CreatePopulation();
             
             UI.getInstance().Write("Game is starting ...");
