@@ -16,9 +16,10 @@ namespace NNSG
         public float decreaseThreshold = 33;
 
         /// <summary>
-        /// Allow to adjust how much population will change 
+        /// Allow to adjust how much population will change
+        /// 0.01f = 1%
         /// </summary>
-        public float changeFactor = 1f;
+        public float changeFactor = 0.01f;
 
         public Population()
         {
