@@ -34,12 +34,23 @@ namespace NNSG
 
             if (happiness >= increaseThreshold)
             {                
-                Person.AddPeople(1);
+                Person.AddPeople(PopulationChange());
             }
             else if (happiness <= decreaseThreshold)
             {
-                Person.RemovePeople(1);
+                Person.RemovePeople(PopulationChange());
             }
+        }
+
+        /// <summary>
+        /// Calculates the population changed based on total population and changeFactor
+        /// </summary>
+        /// <returns></returns>
+        private int PopulationChange()
+        {
+            int change = (int)Math.Ceiling(changeFactor * Person.people.Count);
+
+            return change;
         }
     }
 }
