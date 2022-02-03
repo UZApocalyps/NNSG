@@ -106,6 +106,11 @@ namespace NNSG
             }
         }
 
+        private void AddTailors(int tailors)
+        {
+
+        }
+
         /// <summary>
         /// Add new people to population
         /// </summary>

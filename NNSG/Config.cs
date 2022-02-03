@@ -17,6 +17,7 @@ namespace NNSG
         public int furniture { get; set; }
         public int farmers {get; set;}
 
+        public int tailors { get; set; }
         private Config()
         {
             
