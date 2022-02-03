@@ -4,6 +4,9 @@ using System.Text;
 
 namespace NNSG
 {
+    /// <summary>
+    /// Provides useful methods to generate random numbers
+    /// </summary>
     public class Randomizer 
     {
         private static Random randNumber = new Random();
@@ -29,6 +32,5 @@ namespace NNSG
         {
             return randNumber.Next(from, to);
         }
-
     }
 }
