@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace NNSG
 {
+    /// <summary>
+    /// Allow to configure the simulation settings from a json file
+    /// </summary>
     class Config
     {
         private static Config instance;

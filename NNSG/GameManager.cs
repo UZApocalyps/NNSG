@@ -10,7 +10,7 @@ using NNSG.Commands;
 namespace NNSG
 {
     /// <summary>
-    /// Initialize every systems and manages game plays
+    /// Initialize every systems and manages simulation instances
     /// </summary>
     public class GameManager
     {
