@@ -52,6 +52,8 @@ namespace NNSG
         /// </summary>
         public void Dispose()
         {
+            Time.GetInstance().Unsubscribe(this);
+            people.Remove(this);
             this.Equals(null);
         }
 
@@ -123,7 +125,7 @@ namespace NNSG
                     if (people.Count > 0)
                     {
                         int index = Randomizer.Range(0, people.Count);
-                        people.RemoveAt(index);
+                        people[index].Dispose();
                     }
                     else
                     {
