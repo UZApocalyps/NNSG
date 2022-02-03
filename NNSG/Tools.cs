@@ -3,8 +3,20 @@ using System.Linq;
 
 namespace NNSG
 {
+    /// <summary>
+    /// Provides mathematic methods that aren't included in System.Math
+    /// </summary>
     class Tools
     {
+        /// <summary>
+        /// Returns the interpolated double between range values
+        /// </summary>
+        /// <param name="x">Input value</param>
+        /// <param name="x0">Start of x axis</param>
+        /// <param name="x1">End of x axis</param>
+        /// <param name="y0">Start of y axis</param>
+        /// <param name="y1">End of y axis</param>
+        /// <returns>Output</returns>
         static public double linear(double x, double x0 = 0, double x1 = 100, double y0 = 0, double y1 = 100)
         {
             if ((x1 - x0) == 0)
