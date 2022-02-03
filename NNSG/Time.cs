@@ -24,7 +24,7 @@ namespace NNSG
         /// Changes to this value will take effect at the next tick
         /// 1 / [tick per second]
         /// </summary>
-        private float tickInterval = 1000 / 1;
+        private float tickInterval = 1 / 1f; // 1 second between each ticks
 
         private Timer tickTimer;
 
@@ -71,9 +71,16 @@ namespace NNSG
 
         public void TickAll()
         {
+            for (int i = 0; i < subscribers.Count; i++)
+            {
+                if (subscribers[i] != null)
+                {
+                    subscribers[i].Ticking();
+                }
+
+            }
             foreach (ITick subscriber in subscribers)
             {
-                subscriber.Ticking();
             }
             elaspedTime++;
         }

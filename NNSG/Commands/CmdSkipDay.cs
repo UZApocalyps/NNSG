@@ -24,10 +24,11 @@ namespace NNSG.Commands
             }
             else
             {
-                int lastFoodValue = Warehouse.food.ammount;
+                float lastFoodValue = Warehouse.food.amount;
                 Time.GetInstance().TickAll();
                 UI.getInstance().Write("A new day has come");
             }
+            Command.commands["resources"].Execute(null);
         }
     }
 }

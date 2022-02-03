@@ -18,6 +18,7 @@ namespace NNSG.Commands
             Command.commands.Add("restart", new CmdRestart());
             Command.commands.Add("next", new CmdSkipDay());
             Command.commands.Add("help", new CmdHelp());
+            Command.commands.Add("happiness", new CmdHappiness());
         }
     }
 }

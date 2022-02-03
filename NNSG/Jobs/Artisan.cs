@@ -4,27 +4,26 @@ using System.Text;
 
 namespace NNSG.Jobs
 {
-    class Tailor : Job
+    class Artisan : Job
     {
-        private static Tailor instance;
-
-        private Tailor()
+        private static Artisan instance;
+        private Artisan()
         {
             quantityPerTick = 1;
         }
 
-        public static Tailor GetInstance()
+        public static Artisan GetInstance()
         {
             if (instance == null)
             {
-                instance = new Tailor();
+                instance = new Artisan();
             }
             return instance;
         }
 
         public override void Ticking()
         {
-            Warehouse.clothes.amount += 1;
+            Warehouse.furniture.amount += 1 * Person.people.FindAll(p => p.job is Artisan).Count;
         }
     }
 }

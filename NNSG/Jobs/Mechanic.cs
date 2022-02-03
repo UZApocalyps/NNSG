@@ -23,7 +23,7 @@ namespace NNSG.Jobs
 
         public override void Ticking()
         {
-            Warehouse.vehicule.ammount += 1 * Person.people.FindAll(p => p.job is Mechanic).Count;
+            Warehouse.vehicles.amount += 1 * Person.people.FindAll(p => p.job is Mechanic).Count;
         }
     }
 }
