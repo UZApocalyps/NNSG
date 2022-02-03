@@ -23,7 +23,7 @@ namespace NNSG.Jobs
 
         public override void Ticking()
         {
-            Warehouse.food.ammount += 1 * Person.people.FindAll(p => p.job is Farmer).Count;
+            Warehouse.food.amount += 1 * Person.people.FindAll(p => p.job is Farmer).Count;
         }
     }
 }

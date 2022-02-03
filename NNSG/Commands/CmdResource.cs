@@ -14,7 +14,7 @@ namespace NNSG.Commands
 
         public override void Execute(List<string>args)
         {
-            UI.getInstance().Write("Food : [" + Warehouse.food.ammount + "] Population : [" + Person.people.Count + "] Day : [" + Time.GetInstance().elaspedTime + "]");
+            UI.getInstance().Write("Food : [" + Warehouse.food.amount + "] Population : [" + Person.people.Count + "] Day : [" + Time.GetInstance().elaspedTime + "]");
         }
     }
 }

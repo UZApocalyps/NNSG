@@ -8,7 +8,9 @@ namespace NNSG
 {
     class Person : ITick
     {
-        public int id;
+        private static uint nextAvailableID = 0;
+
+        public uint id;
         public int age;
         public List<Need> needs;
         public Job job;
@@ -20,9 +22,18 @@ namespace NNSG
         /// </summary>
         public Person()
         {
+            // Set unique ID 
+            id = GetNextID();
+
+            // Randomize age
+            age = Randomizer.Range(10, 50);
+
             // Create its needs
             needs = new List<Need>();
-            needs.Add(new Hunger(0));
+            needs.Add(new Hunger(Randomizer.Range(0, 100)));
+            needs.Add(new Clothing(Randomizer.Range(0, 100)));
+            needs.Add(new Comfort(Randomizer.Range(0, 100)));
+            needs.Add(new Transport(Randomizer.Range(0, 100)));
 
             // Update happiness to prevent a bug if happiness command is used before calling next a first time
             UpdateHappiness();
@@ -71,6 +82,55 @@ namespace NNSG
         public static int GetGlobalHappiness()
         {
             return Tools.Average(Person.people.Select(person => person.happiness).ToArray());
+        }
+
+        private uint GetNextID()
+        {
+            uint id = nextAvailableID;
+            nextAvailableID++;
+            return id;
+        }
+
+        /// <summary>
+        /// Add new people
+        /// </summary>
+        /// <param name="amount"></param>
+        public static void AddPeople(int amount)
+        {
+            if (amount > 0)
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    people.Add(new Person());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Remove people randomly 
+        /// </summary>
+        /// <param name="amount"></param>
+        public static void RemovePeople(int amount)
+        {
+            if (amount > people.Count)
+            {
+                // GAME OVER
+            }
+            else
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    if (people.Count > 0)
+                    {
+                        int index = Randomizer.Range(0, people.Count);
+                        people.RemoveAt(index);
+                    }
+                    else
+                    {
+                        // GAME OVER
+                    }
+                }
+            }
         }
     }
 }
