@@ -5,6 +5,7 @@ using NNSG.Needs;
 using NNSG.Jobs;
 using System.Threading;
 using NNSG.Commands;
+using NNSG.Events;
 
 namespace NNSG
 {
@@ -35,6 +36,8 @@ namespace NNSG
         public void StartGame()
         {
             CreateTimer(config.firstDay);
+
+            CreateEvents();
 
             CreateGoods();
 
@@ -69,6 +72,15 @@ namespace NNSG
             timer.elaspedTime = startTime;
             //timer.StartTimer();
 
+        }
+
+        /// <summary>
+        /// Instanciate all events that can happen in the game
+        /// </summary>
+        private void CreateEvents()
+        {
+            Meteor meteor = new Meteor();
+            Insurrection insurrection = new Insurrection();
         }
 
         private void CreateGoods()
