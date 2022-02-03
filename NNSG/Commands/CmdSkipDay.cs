@@ -28,6 +28,7 @@ namespace NNSG.Commands
                 Time.GetInstance().TickAll();
                 UI.getInstance().Write("A new day has come");
             }
+            Command.commands["resources"].Execute(null);
         }
     }
 }

@@ -31,9 +31,9 @@ namespace NNSG
             // Create its needs
             needs = new List<Need>();
             needs.Add(new Hunger(Randomizer.Range(0, 100)));
-            needs.Add(new Clothing(Randomizer.Range(0, 100)));
-            needs.Add(new Comfort(Randomizer.Range(0, 100)));
-            needs.Add(new Transport(Randomizer.Range(0, 100)));
+            //needs.Add(new Clothing(Randomizer.Range(0, 100)));
+            //needs.Add(new Comfort(Randomizer.Range(0, 100)));
+            //needs.Add(new Transport(Randomizer.Range(0, 100)));
 
             // Update happiness to prevent a bug if happiness command is used before calling next a first time
             UpdateHappiness();
@@ -103,7 +103,13 @@ namespace NNSG
             {
                 for (int i = 0; i < amount; i++)
                 {
-                    people.Add(new Person());
+                    Person person = Person.people[i];
+                   
+                    if (Randomizer.Range(0,5) == 0)
+                    {
+                        person.AddJob(Farmer.GetInstance());
+                    }
+                    people.Add(person);
                 }
             }
         }
