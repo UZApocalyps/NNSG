@@ -15,7 +15,6 @@ namespace NNSG
         public int vehicles { get; set; }
         public int clothes { get; set; }
         public int furniture { get; set; }
-
         public int farmers {get; set;}
 
         private Config()
