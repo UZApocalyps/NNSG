@@ -6,7 +6,6 @@ using NNSG.Jobs;
 using NNSG.Goods;
 using System.Threading;
 using NNSG.Commands;
-using NNSG.Events;
 
 namespace NNSG
 {
@@ -38,8 +37,6 @@ namespace NNSG
         {
             CreateTimer(config.firstDay);
 
-            CreateEvents();
-
             CreateGoods();
 
             AddPeople(config.people);
@@ -49,7 +46,7 @@ namespace NNSG
             AddTailors(config.tailors);
 
             CreatePopulation();
-            
+
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
         }
@@ -77,31 +74,12 @@ namespace NNSG
         }
 
         /// <summary>
-        /// Instanciate all events that can happen in the game
-        /// </summary>
-        private void CreateEvents()
-        {
-            Meteor meteor = new Meteor();
-            Insurrection insurrection = new Insurrection();
-        }
-
-        private void CreateGoods()
-        {
-            Good food = new Good();
-            food.name = "food";
-            food.type = GoodType.Food;
-            food.ammount = 0;
-            food.price = 1;
-            Warehouse.food = food;
-        }
-
-        /// <summary>
         /// Create goods and set their amount & price
         /// </summary>
         /// <param name="amountValue">The total of the good</param>
         /// <param name="priceValue">The price of the good</param>
         private void CreateGoods()
-        {      
+        {
             Warehouse.food = new Food(config.food, 1);
             Warehouse.clothes = new Clothes(config.clothes, 10);
             Warehouse.vehicles = new Vehicles(config.vehicles, 1000);
@@ -117,7 +95,7 @@ namespace NNSG
         {
             int addedFarmers = 0;
             Farmer farmer = Farmer.GetInstance();
-            foreach (var person in Person.people.FindAll(person=> person.job == null))
+            foreach (var person in Person.people.FindAll(person => person.job == null))
             {
                 person.AddJob(farmer);
                 addedFarmers++;
@@ -141,7 +119,7 @@ namespace NNSG
         {
             for (int i = 0; i < ammount; i++)
             {
-                Person.people.Add(new Person());              
+                Person.people.Add(new Person());
             }
         }
 
