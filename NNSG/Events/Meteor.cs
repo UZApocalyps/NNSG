@@ -8,27 +8,40 @@ namespace NNSG.Events
 {
     class Meteor : Disaster
     {
-        int luck = 10000;
+        float luck = 0.0001f;
 
         private string[] messages;
-
+        Lang lang;
         public Meteor()
         {
             Time.GetInstance().Subscribe(this);
-            Dictionary<string, object> oui = JsonConvert.DeserializeObject<Dictionary<string,object>>(File.ReadAllText("lang/fr.json"));
-            Dictionary<string, object> non = JsonConvert.DeserializeObject<Dictionary<string, object>>(File.ReadAllText(oui["meteor"].ToString()));
-            
-            messages[0] = "";
-
+            lang = JsonConvert.DeserializeObject<Lang>(File.ReadAllText("lang/fr.json"));
         }
 
         public override void Ticking()
         {
-            if (new Random().Next(0,luck) == luck )
+            if (Randomizer.Probability(luck))
             {
-                //PAAAAAAAAAAAANNNNNNNNNNNNNNNNNNNNNIIIIIIIIIIIIIIIIIC
+                foreach (var message in lang.meteor)
+                {
+                    UI.getInstance().Write(message);
+                }
+                int deadPeople = Randomizer.Range(Person.people.Count / 5, Person.people.Count / 2);
+                float foodLoss = Warehouse.food.amount / 2;
+                Person.RemovePeople(deadPeople);
+                Warehouse.food.amount -= foodLoss;
+                UI.getInstance().Write(deadPeople + " personnes sont en bouillie");
+                UI.getInstance().Write(foodLoss + " de nourriture à été détruite");
+
 
             }
+        }
+        private class Lang
+        {
+            public string[] meteor;
+            public string[] fire;
+            public string[] earthquake;
+            public string[] insurrection;
         }
     }
 }
