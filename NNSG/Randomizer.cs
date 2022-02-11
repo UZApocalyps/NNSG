@@ -10,7 +10,7 @@ namespace NNSG
 
         public static bool Probability(float probability)
         {
-            int number = randNumber.Next(0, 100);
+            float number = randNumber.Next(0, 100);
             return number < probability;
         }
 

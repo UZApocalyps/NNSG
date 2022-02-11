@@ -30,17 +30,25 @@ namespace NNSG
         /// Will evaluate current global happiness and increase or decrease population
         /// </summary>
         public void Ticking()
-        { 
-            int happiness = Person.GetGlobalHappiness();
-
-            if (happiness >= increaseThreshold)
-            {                
-                Person.AddPeople(PopulationChange());
-            }
-            else if (happiness <= decreaseThreshold)
+        {
+            if (Person.people.Count > 0)
             {
-                Person.RemovePeople(PopulationChange());
+                int happiness = Person.GetGlobalHappiness();
+
+                if (happiness >= increaseThreshold)
+                {
+                    Person.AddPeople(PopulationChange());
+                }
+                else if (happiness <= decreaseThreshold)
+                {
+                    Person.RemovePeople(PopulationChange());
+                }
             }
+            else
+            {
+                GameManager.GetInstance().End();
+            }
+            
         }
 
         /// <summary>

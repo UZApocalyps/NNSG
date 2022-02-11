@@ -6,6 +6,10 @@ using NNSG.Jobs;
 using NNSG.Goods;
 using System.Threading;
 using NNSG.Commands;
+using NNSG.Events;
+using NNSG.lang;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace NNSG
 {
@@ -17,8 +21,12 @@ namespace NNSG
         {
             //TODO instanciate objects
             config = Config.getInstance();
+            Console.OutputEncoding = Encoding.UTF8;
+            if (!Command.loaded)
+            {
+                Command.RegisterCommands();
+            }
 
-            Command.RegisterCommands();
         }
 
         public static GameManager GetInstance()
@@ -35,6 +43,8 @@ namespace NNSG
         /// </summary>
         public void StartGame()
         {
+            LoadLang();
+
             CreateTimer(config.firstDay);
 
             CreateGoods();
@@ -46,16 +56,36 @@ namespace NNSG
             AddTailors(config.tailors);
 
             CreatePopulation();
+
+            new Meteor();
+
+            new Earthquake();
+
+            new Fire();
             
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
         }
 
+        public void LoadLang()
+        {
+            Lang.SetInstance(JsonConvert.DeserializeObject<Lang>(File.ReadAllText("lang/fr.json")));
+        }
         public void Restart()
         {
             Warehouse.food = null;
+            Warehouse.furniture = null;
+            Warehouse.vehicles = null;
+            Warehouse.clothes = null;
             Person.people.Clear();
-            StartGame();
+            instance = null;
+            GameManager gameManager = new GameManager();
+            gameManager.StartGame();
+        }
+        public void End()
+        {
+            UI.getInstance().PrintLoose();
+            Restart();
         }
         private void KeepConsoleAlive()
         {
@@ -79,7 +109,7 @@ namespace NNSG
         /// <param name="amountValue">The total of the good</param>
         /// <param name="priceValue">The price of the good</param>
         private void CreateGoods()
-        {      
+        {
             Warehouse.food = new Food(config.food, 1);
             Warehouse.clothes = new Clothes(config.clothes, 10);
             Warehouse.vehicles = new Vehicles(config.vehicles, 1000);
@@ -95,7 +125,7 @@ namespace NNSG
         {
             int addedFarmers = 0;
             Farmer farmer = Farmer.GetInstance();
-            foreach (var person in Person.people.FindAll(person=> person.job == null))
+            foreach (var person in Person.people.FindAll(person => person.job == null))
             {
                 person.AddJob(farmer);
                 addedFarmers++;
@@ -119,7 +149,7 @@ namespace NNSG
         {
             for (int i = 0; i < ammount; i++)
             {
-                Person.people.Add(new Person());              
+                Person.people.Add(new Person());
             }
         }
 
