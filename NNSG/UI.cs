@@ -4,6 +4,9 @@ using System.Text;
 
 namespace NNSG
 {
+    /// <summary>
+    /// Manages the console and offers a way to interact with it
+    /// </summary>
     class UI
     {
         private static UI instance;
