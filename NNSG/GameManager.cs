@@ -46,6 +46,8 @@ namespace NNSG
 
             AddFarmers(config.farmers);
 
+            AddTailors(config.tailors);
+
             CreatePopulation();
             
             UI.getInstance().Write("Game is starting ...");
@@ -105,6 +107,11 @@ namespace NNSG
                     break;
                 }
             }
+        }
+
+        private void AddTailors(int tailors)
+        {
+
         }
 
         /// <summary>
