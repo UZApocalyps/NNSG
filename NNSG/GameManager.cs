@@ -62,6 +62,8 @@ namespace NNSG
             new Earthquake();
 
             new Fire();
+
+            new Insurrection();
             
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();

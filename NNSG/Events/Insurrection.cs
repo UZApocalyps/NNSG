@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using NNSG.Commands;
+using NNSG.lang;
 
 namespace NNSG.Events
 {
@@ -34,6 +35,10 @@ namespace NNSG.Events
                 {
                     active = true;
                     CmdSkipDay.trigger = true;
+                    foreach (var message in Lang.GetInstance().insurrection)
+                    {
+                        UI.getInstance().Write(message);
+                    }
                 }
 
             }
