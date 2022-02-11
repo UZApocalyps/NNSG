@@ -6,6 +6,7 @@ using NNSG.Jobs;
 using NNSG.Goods;
 using System.Threading;
 using NNSG.Commands;
+using NNSG.Events;
 
 namespace NNSG
 {
@@ -17,8 +18,9 @@ namespace NNSG
         {
             //TODO instanciate objects
             config = Config.getInstance();
-
+            Console.OutputEncoding = Encoding.UTF8;
             Command.RegisterCommands();
+
         }
 
         public static GameManager GetInstance()
@@ -47,6 +49,12 @@ namespace NNSG
 
             CreatePopulation();
 
+            new Meteor();
+
+            new Earthquake();
+
+            new Fire();
+            
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
         }
