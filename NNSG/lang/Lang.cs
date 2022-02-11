@@ -10,5 +10,23 @@ namespace NNSG.lang
         public string[] fire;
         public string[] earthquake;
         public string[] insurrection;
+        private static Lang instance;
+        private Lang()
+        {
+
+        }
+        public static Lang GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Lang();
+            }
+            return instance;
+        }
+        public static void SetInstance(Lang lang)
+        {
+            instance=lang;
+        }
+
     }
 }

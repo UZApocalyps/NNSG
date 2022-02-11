@@ -11,18 +11,16 @@ namespace NNSG.Events
     class Fire : Disaster
     {
         int luck = 1000;
-        Lang lang;
 
         public Fire()
         {
             Time.GetInstance().Subscribe(this);
-            lang = JsonConvert.DeserializeObject<Lang>(File.ReadAllText("lang/fr.json"));
         }
         public override void Ticking()
         {
             if (Randomizer.Range(0, luck) == luck - 1)
             {
-                foreach (var message in lang.fire)
+                foreach (var message in Lang.GetInstance().fire)
                 {
                     UI.getInstance().Write(message);
                 }

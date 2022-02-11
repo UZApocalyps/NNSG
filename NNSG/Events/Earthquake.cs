@@ -11,18 +11,17 @@ namespace NNSG.Events
     class Earthquake : Disaster
     {
         int luck = 1000;
-        Lang lang;
+
 
         public Earthquake()
         {
             Time.GetInstance().Subscribe(this);
-            lang = JsonConvert.DeserializeObject<Lang>(File.ReadAllText("lang/fr.json"));
         }
         public override void Ticking()
         {
             if (Randomizer.Range(0, luck) == luck - 1)
             {
-                foreach (var message in lang.earthquake)
+                foreach (var message in Lang.GetInstance().earthquake)
                 {
                     UI.getInstance().Write(message);
                 }

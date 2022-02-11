@@ -12,18 +12,16 @@ namespace NNSG.Events
     {
         int luck = 10000;
 
-        Lang lang;
         public Meteor()
         {
             Time.GetInstance().Subscribe(this);
-            lang = JsonConvert.DeserializeObject<Lang>(File.ReadAllText("lang/fr.json"));
         }
 
         public override void Ticking()
         {
             if (Randomizer.Range(0,luck) == luck-1)
             {
-                foreach (var message in lang.meteor)
+                foreach (var message in Lang.GetInstance().meteor)
                 {
                     UI.getInstance().Write(message);
                 }

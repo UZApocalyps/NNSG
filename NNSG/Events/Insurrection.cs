@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NNSG.Commands;
 
 namespace NNSG.Events
 {
@@ -15,7 +16,27 @@ namespace NNSG.Events
 
         public override void Ticking()
         {
-            //todo
+            if (active)
+            {
+                if (Person.GetGlobalHappiness() >= 15)
+                {
+                    active = false;
+                }
+                else
+                {
+                    double dead = Person.people.Count * 0.1;
+                    Person.RemovePeople((int)dead);
+                }
+            }
+            else
+            {
+                if (Person.GetGlobalHappiness() <= 0)
+                {
+                    active = true;
+                    CmdSkipDay.trigger = true;
+                }
+
+            }
         }
     }
 }
