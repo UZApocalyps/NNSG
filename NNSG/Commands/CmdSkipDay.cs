@@ -16,9 +16,9 @@ namespace NNSG.Commands
         public override void Execute(List<string> args)
         {
             int days = 0;
-            if (args.Count >= 1)
+            if (int.TryParse(args[0],out int res) && args.Count >= 1)
             {
-                for (int i = 0; i < int.Parse(args[0]); i++)
+                for (int i = 0; i < res; i++)
                 {
                     Time.GetInstance().TickAll();
                     if (trigger)
