@@ -16,6 +16,11 @@ namespace NNSG
     public class GameManager
     {
         private static GameManager instance;
+        private Tailor tailor = Tailor.GetInstance();
+        private Artisan artisan = Artisan.GetInstance();
+        private Farmer farmer = Farmer.GetInstance();
+        private Mechanic mechanician = Mechanic.GetInstance();
+
         private Config config;
         private GameManager()
         {
@@ -51,11 +56,21 @@ namespace NNSG
 
             AddPeople(config.people);
 
-            AddFarmers(config.farmers);
+            //AddFarmers(config.farmers);
 
-            AddTailors(config.tailors);
+            //AddTailors(config.tailors);
+
+            //AddArtisans(config.artisans);
+
+            //AddMechanicians(config.mechanicians);
 
             CreatePopulation();
+
+            AddWorkers<Farmer>(config.farmers);
+            AddWorkers<Tailor>(config.tailors);
+            AddWorkers<Artisan>(config.artisans);
+            AddWorkers<Mechanic>(config.mechanicians);
+
 
             new Meteor();
 
@@ -118,29 +133,30 @@ namespace NNSG
             Warehouse.furniture = new Furniture(config.furniture, 100);
         }
 
-
+        
         /// <summary>
-        /// Add specific ammount of farmers
+        /// Create jobs given the configuration
         /// </summary>
-        /// <param name="farmers">Ammount of farmers you want to add</param>
-        private void AddFarmers(int farmers)
-        {
-            int addedFarmers = 0;
-            Farmer farmer = Farmer.GetInstance();
-            foreach (var person in Person.people.FindAll(person => person.job == null))
+        /// <typeparam name="T">The type of the job</typeparam>
+        /// <param name="workers">The amount of f</param>
+        private void AddWorkers<T>(int workers) where T : Job
+        { 
+            foreach (Job job in Job.allJobs)
             {
-                person.AddJob(farmer);
-                addedFarmers++;
-                if (addedFarmers >= farmers)
+                if(job is T)
                 {
-                    break;
+                    int addedWorkers = 0;
+                    foreach (var person in Person.people.FindAll(person => person.job == null))
+                    {
+                        person.AddJob(job);
+                        addedWorkers++;
+                        if (addedWorkers >= workers)
+                        {
+                            break;
+                        }
+                    }
                 }
             }
-        }
-
-        private void AddTailors(int tailors)
-        {
-
         }
 
         /// <summary>

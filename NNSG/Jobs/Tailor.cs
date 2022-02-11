@@ -18,6 +18,7 @@ namespace NNSG.Jobs
             if (instance == null)
             {
                 instance = new Tailor();
+                allJobs.Add(instance);
             }
             return instance;
         }

@@ -17,6 +17,7 @@ namespace NNSG.Jobs
             if (instance == null)
             {
                 instance = new Artisan();
+                allJobs.Add(instance);
             }
             return instance;
         }
