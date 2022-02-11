@@ -5,7 +5,7 @@ namespace NNSG.Commands
     abstract class Command
     {
         public static Dictionary<string,Command> commands = new Dictionary<string,Command>();
-
+        public static bool loaded = false;
         public string command;
         public List<string> arguments = new List<string>();
         public string helpMessage;
@@ -19,6 +19,7 @@ namespace NNSG.Commands
             Command.commands.Add("next", new CmdSkipDay());
             Command.commands.Add("help", new CmdHelp());
             Command.commands.Add("happiness", new CmdHappiness());
+            loaded = true;
         }
     }
 }

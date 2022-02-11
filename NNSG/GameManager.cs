@@ -7,6 +7,9 @@ using NNSG.Goods;
 using System.Threading;
 using NNSG.Commands;
 using NNSG.Events;
+using NNSG.lang;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace NNSG
 {
@@ -19,7 +22,10 @@ namespace NNSG
             //TODO instanciate objects
             config = Config.getInstance();
             Console.OutputEncoding = Encoding.UTF8;
-            Command.RegisterCommands();
+            if (!Command.loaded)
+            {
+                Command.RegisterCommands();
+            }
 
         }
 
@@ -37,6 +43,8 @@ namespace NNSG
         /// </summary>
         public void StartGame()
         {
+            LoadLang();
+
             CreateTimer(config.firstDay);
 
             CreateGoods();
@@ -59,11 +67,25 @@ namespace NNSG
             KeepConsoleAlive();
         }
 
+        public void LoadLang()
+        {
+            Lang.SetInstance(JsonConvert.DeserializeObject<Lang>(File.ReadAllText("lang/fr.json")));
+        }
         public void Restart()
         {
             Warehouse.food = null;
+            Warehouse.furniture = null;
+            Warehouse.vehicles = null;
+            Warehouse.clothes = null;
             Person.people.Clear();
-            StartGame();
+            instance = null;
+            GameManager gameManager = new GameManager();
+            gameManager.StartGame();
+        }
+        public void End()
+        {
+            UI.getInstance().PrintLoose();
+            Restart();
         }
         private void KeepConsoleAlive()
         {
