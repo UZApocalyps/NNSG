@@ -16,22 +16,22 @@ namespace NNSG
     public class GameManager
     {
         private static GameManager instance;
-        private Tailor tailor = Tailor.GetInstance();
-        private Artisan artisan = Artisan.GetInstance();
-        private Farmer farmer = Farmer.GetInstance();
-        private Mechanic mechanician = Mechanic.GetInstance();
+        private List<Job> allJobs = new List<Job>();
 
         private Config config;
         private GameManager()
         {
-            //TODO instanciate objects
+            allJobs.Add(Tailor.GetInstance());
+            allJobs.Add(Artisan.GetInstance());
+            allJobs.Add(Farmer.GetInstance());
+            allJobs.Add(Mechanic.GetInstance());
+
             config = Config.getInstance();
             Console.OutputEncoding = Encoding.UTF8;
             if (!Command.loaded)
             {
                 Command.RegisterCommands();
             }
-
         }
 
         public static GameManager GetInstance()
@@ -56,21 +56,12 @@ namespace NNSG
 
             AddPeople(config.people);
 
-            //AddFarmers(config.farmers);
-
-            //AddTailors(config.tailors);
-
-            //AddArtisans(config.artisans);
-
-            //AddMechanicians(config.mechanicians);
-
             CreatePopulation();
 
             AddWorkers<Farmer>(config.farmers);
             AddWorkers<Tailor>(config.tailors);
             AddWorkers<Artisan>(config.artisans);
             AddWorkers<Mechanic>(config.mechanicians);
-
 
             new Meteor();
 
@@ -141,9 +132,9 @@ namespace NNSG
         /// <param name="workers">The amount of f</param>
         private void AddWorkers<T>(int workers) where T : Job
         { 
-            foreach (Job job in Job.allJobs)
+            foreach (Job job in allJobs)
             {
-                if(job is T)
+                if (job is T)
                 {
                     int addedWorkers = 0;
                     foreach (var person in Person.people.FindAll(person => person.job == null))

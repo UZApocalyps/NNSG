@@ -17,7 +17,6 @@ namespace NNSG.Jobs
             if (instance == null)
             {
                 instance = new Farmer();
-                allJobs.Add(instance);
             }
             return instance;
         }
