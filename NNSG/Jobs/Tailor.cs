@@ -24,7 +24,7 @@ namespace NNSG.Jobs
 
         public override void Ticking()
         {
-            Warehouse.clothes.amount += Randomizer.Range(0, 200) * Person.people.FindAll(p => p.job is Tailor).Count;
+            Warehouse.clothes.amount += Randomizer.Range(0, 2) * Person.people.FindAll(p => p.job is Tailor).Count;
         }
     }
 }

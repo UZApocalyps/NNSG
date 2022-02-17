@@ -23,7 +23,7 @@ namespace NNSG.Jobs
 
         public override void Ticking()
         {
-            Warehouse.furniture.amount += 1 * Person.people.FindAll(p => p.job is Artisan).Count;
+            Warehouse.furniture.amount += Randomizer.Range(0, 2) * Person.people.FindAll(p => p.job is Artisan).Count;
         }
     }
 }
