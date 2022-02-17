@@ -9,7 +9,7 @@ namespace NNSG.Jobs
         private static Artisan instance;
         private Artisan()
         {
-            quantityPerTick = 1;
+            Time.GetInstance().Subscribe(this);
         }
 
         public static Artisan GetInstance()

@@ -10,7 +10,7 @@ namespace NNSG.Jobs
 
         private Tailor()
         {
-            quantityPerTick = 1;
+            Time.GetInstance().Subscribe(this);
         }
 
         public static Tailor GetInstance()
@@ -24,7 +24,7 @@ namespace NNSG.Jobs
 
         public override void Ticking()
         {
-            Warehouse.clothes.amount += 1;
+            Warehouse.clothes.amount += Randomizer.Range(0, 200) * Person.people.FindAll(p => p.job is Tailor).Count;
         }
     }
 }
