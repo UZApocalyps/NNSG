@@ -105,9 +105,16 @@ namespace NNSG
                 {
                     Person person = Person.people[i];
                    
-                    if (Randomizer.Range(0,5) == 0)
+                    switch(Randomizer.Range(0, 4))
                     {
-                        person.AddJob(Farmer.GetInstance());
+                        case 0: person.AddJob(Farmer.GetInstance());
+                            break;
+                        case 1: person.AddJob(Artisan.GetInstance());
+                            break;
+                        case 2: person.AddJob(Mechanic.GetInstance());
+                            break;
+                        case 3: person.AddJob(Tailor.GetInstance());
+                            break;
                     }
                     people.Add(person);
                 }

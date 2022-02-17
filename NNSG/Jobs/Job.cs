@@ -9,6 +9,5 @@ namespace NNSG.Jobs
         public int quantityPerTick;
         public abstract void Ticking();
 
-
     }
 }
