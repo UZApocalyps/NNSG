@@ -2,6 +2,9 @@
 using System.Timers;
 namespace NNSG
 {
+    /// <summary>
+    /// Triggers a tick at desired moment or at regular intervals on all class implementing the ITick interface
+    /// </summary>
     class Time
     {
         private static Time instance;

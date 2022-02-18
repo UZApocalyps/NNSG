@@ -13,6 +13,9 @@ using System.IO;
 
 namespace NNSG
 {
+    /// <summary>
+    /// Initialize every systems and manages simulation instances
+    /// </summary>
     public class GameManager
     {
         private static GameManager instance;
