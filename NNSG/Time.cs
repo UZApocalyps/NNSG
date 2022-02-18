@@ -91,6 +91,7 @@ namespace NNSG
 
             elaspedTime++;
         }
+        
         /// <summary>
         /// Instantiate a new Timer and runs it
         /// </summary>
