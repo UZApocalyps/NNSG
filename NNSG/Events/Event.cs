@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NNSG.Jobs
+namespace NNSG.Events
 {
-    abstract class Job : ITick
+    abstract class Event : ITick
     {
-        public int quantityPerTick;
         public abstract void Ticking();
-
     }
 }

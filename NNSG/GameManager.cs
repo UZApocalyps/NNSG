@@ -6,6 +6,10 @@ using NNSG.Jobs;
 using NNSG.Goods;
 using System.Threading;
 using NNSG.Commands;
+using NNSG.Events;
+using NNSG.lang;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace NNSG
 {
@@ -15,13 +19,22 @@ namespace NNSG
     public class GameManager
     {
         private static GameManager instance;
+        private List<Job> allJobs = new List<Job>();
+
         private Config config;
         private GameManager()
         {
-            //TODO instanciate objects
-            config = Config.getInstance();
+            allJobs.Add(Tailor.GetInstance());
+            allJobs.Add(Artisan.GetInstance());
+            allJobs.Add(Farmer.GetInstance());
+            allJobs.Add(Mechanic.GetInstance());
 
-            Command.RegisterCommands();
+            config = Config.getInstance();
+            Console.OutputEncoding = Encoding.UTF8;
+            if (!Command.loaded)
+            {
+                Command.RegisterCommands();
+            }
         }
 
         public static GameManager GetInstance()
@@ -38,27 +51,52 @@ namespace NNSG
         /// </summary>
         public void StartGame()
         {
+            LoadLang();
+
             CreateTimer(config.firstDay);
 
             CreateGoods();
 
             AddPeople(config.people);
 
-            AddFarmers(config.farmers);
-
-            AddTailors(config.tailors);
-
             CreatePopulation();
+
+            AddWorkers<Farmer>(config.farmers);
+            AddWorkers<Tailor>(config.tailors);
+            AddWorkers<Artisan>(config.artisans);
+            AddWorkers<Mechanic>(config.mechanicians);
+
+            new Meteor();
+
+            new Earthquake();
+
+            new Fire();
+
+            new Insurrection();
             
             UI.getInstance().Write("Game is starting ...");
             KeepConsoleAlive();
         }
 
+        public void LoadLang()
+        {
+            Lang.SetInstance(JsonConvert.DeserializeObject<Lang>(File.ReadAllText("lang/fr.json")));
+        }
         public void Restart()
         {
             Warehouse.food = null;
+            Warehouse.furniture = null;
+            Warehouse.vehicles = null;
+            Warehouse.clothes = null;
             Person.people.Clear();
-            StartGame();
+            instance = null;
+            GameManager gameManager = new GameManager();
+            gameManager.StartGame();
+        }
+        public void End()
+        {
+            UI.getInstance().PrintLoose();
+            Restart();
         }
         private void KeepConsoleAlive()
         {
@@ -82,36 +120,37 @@ namespace NNSG
         /// <param name="amountValue">The total of the good</param>
         /// <param name="priceValue">The price of the good</param>
         private void CreateGoods()
-        {      
+        {
             Warehouse.food = new Food(config.food, 1);
             Warehouse.clothes = new Clothes(config.clothes, 10);
             Warehouse.vehicles = new Vehicles(config.vehicles, 1000);
             Warehouse.furniture = new Furniture(config.furniture, 100);
         }
 
-
+        
         /// <summary>
-        /// Add specific ammount of farmers
+        /// Create jobs given the configuration
         /// </summary>
-        /// <param name="farmers">Ammount of farmers you want to add</param>
-        private void AddFarmers(int farmers)
-        {
-            int addedFarmers = 0;
-            Farmer farmer = Farmer.GetInstance();
-            foreach (var person in Person.people.FindAll(person=> person.job == null))
+        /// <typeparam name="T">The type of the job</typeparam>
+        /// <param name="workers">The amount of f</param>
+        private void AddWorkers<T>(int workers) where T : Job
+        { 
+            foreach (Job job in allJobs)
             {
-                person.AddJob(farmer);
-                addedFarmers++;
-                if (addedFarmers >= farmers)
+                if (job is T)
                 {
-                    break;
+                    int addedWorkers = 0;
+                    foreach (var person in Person.people.FindAll(person => person.job == null))
+                    {
+                        person.AddJob(job);
+                        addedWorkers++;
+                        if (addedWorkers >= workers)
+                        {
+                            break;
+                        }
+                    }
                 }
             }
-        }
-
-        private void AddTailors(int tailors)
-        {
-
         }
 
         /// <summary>
@@ -122,7 +161,7 @@ namespace NNSG
         {
             for (int i = 0; i < ammount; i++)
             {
-                Person.people.Add(new Person());              
+                Person.people.Add(new Person());
             }
         }
 

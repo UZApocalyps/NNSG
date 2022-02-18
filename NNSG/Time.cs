@@ -74,9 +74,16 @@ namespace NNSG
 
         public void TickAll()
         {
+            for (int i = 0; i < subscribers.Count; i++)
+            {
+                if (subscribers[i] != null)
+                {
+                    subscribers[i].Ticking();
+                }
+
+            }
             foreach (ITick subscriber in subscribers)
             {
-                subscriber.Ticking();
             }
             elaspedTime++;
         }

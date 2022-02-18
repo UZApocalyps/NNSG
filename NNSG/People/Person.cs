@@ -52,6 +52,8 @@ namespace NNSG
         /// </summary>
         public void Dispose()
         {
+            Time.GetInstance().Unsubscribe(this);
+            people.Remove(this);
             this.Equals(null);
         }
 
@@ -101,7 +103,20 @@ namespace NNSG
             {
                 for (int i = 0; i < amount; i++)
                 {
-                    people.Add(new Person());
+                    Person person = Person.people[i];
+                   
+                    switch(Randomizer.Range(0, 4))
+                    {
+                        case 0: person.AddJob(Farmer.GetInstance());
+                            break;
+                        case 1: person.AddJob(Artisan.GetInstance());
+                            break;
+                        case 2: person.AddJob(Mechanic.GetInstance());
+                            break;
+                        case 3: person.AddJob(Tailor.GetInstance());
+                            break;
+                    }
+                    people.Add(person);
                 }
             }
         }
@@ -123,7 +138,7 @@ namespace NNSG
                     if (people.Count > 0)
                     {
                         int index = Randomizer.Range(0, people.Count);
-                        people.RemoveAt(index);
+                        people[index].Dispose();
                     }
                     else
                     {

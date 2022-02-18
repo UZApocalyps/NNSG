@@ -19,6 +19,11 @@ namespace NNSG
         ╚═╝  ╚═══╝ ╚═════╝     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
                                                                                                                                                              
         ";
+        const string loose = @"
+        ╦ ╦┌─┐┬ ┬  ╦  ┌─┐┌─┐┌─┐┌─┐
+        ╚╦╝│ ││ │  ║  │ ││ │└─┐├┤ 
+         ╩ └─┘└─┘  ╩═╝└─┘└─┘└─┘└─┘
+        ";
         private UI()
         {
 
@@ -63,6 +68,11 @@ namespace NNSG
             {
                 Console.WriteLine(item.Value + "["+item.Key+"]");
             }
+        }
+
+        public void PrintLoose()
+        {
+            Console.WriteLine(loose);
         }
     }
 }
