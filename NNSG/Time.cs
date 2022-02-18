@@ -82,9 +82,13 @@ namespace NNSG
                 }
 
             }
+
+            /*
             foreach (ITick subscriber in subscribers)
             {
             }
+            */
+
             elaspedTime++;
         }
         /// <summary>
