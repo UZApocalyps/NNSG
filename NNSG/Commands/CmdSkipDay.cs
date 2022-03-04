@@ -15,6 +15,8 @@ namespace NNSG.Commands
 
         public override void Execute(List<string> args)
         {
+            List<string> values = CacheValues();
+
             int days = 0;
             if (int.TryParse(args[0],out int res) && args.Count >= 1)
             {
@@ -36,7 +38,25 @@ namespace NNSG.Commands
                 Time.GetInstance().TickAll();
                 UI.getInstance().Write("A new day has come");
             }
-            Command.commands["resources"].Execute(null);
+            Command.commands["resources"].Execute(values);
+        }
+
+        /// <summary>
+        /// Stores values in a string array to be useable with Execute command
+        /// </summary>
+        /// <returns></returns>
+        List<string> CacheValues()
+        {
+            List<string> values = new List<string>();
+
+            values.Add("resources");
+            values.Add(Warehouse.food.amount.ToString());
+            values.Add(Warehouse.furniture.amount.ToString());
+            values.Add(Warehouse.vehicles.amount.ToString());
+            values.Add(Warehouse.clothes.amount.ToString());
+            values.Add(Person.people.Count.ToString());
+
+            return values;
         }
     }
 }
