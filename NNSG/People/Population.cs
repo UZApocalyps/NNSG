@@ -27,7 +27,7 @@ namespace NNSG
         }
 
         /// <summary>
-        /// Will evaluate current global happiness and increase or decrease population
+        /// Will evaluate current global happiness and increase or decrease population or ends the game if there's no one left
         /// </summary>
         public void Ticking()
         {

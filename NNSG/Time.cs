@@ -82,11 +82,16 @@ namespace NNSG
                 }
 
             }
+
+            /*
             foreach (ITick subscriber in subscribers)
             {
             }
+            */
+
             elaspedTime++;
         }
+        
         /// <summary>
         /// Instantiate a new Timer and runs it
         /// </summary>
