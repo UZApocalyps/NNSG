@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace NNSG
 {
@@ -54,6 +55,23 @@ namespace NNSG
             }
             else
                 return -1;
+        }
+        /// <summary>
+        /// Stores values in a string array to be useable with Execute command
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> CacheValues()
+        {
+            List<string> values = new List<string>();
+
+            values.Add("resources");
+            values.Add(Warehouse.food.amount.ToString());
+            values.Add(Warehouse.furniture.amount.ToString());
+            values.Add(Warehouse.vehicles.amount.ToString());
+            values.Add(Warehouse.clothes.amount.ToString());
+            values.Add(Person.people.Count.ToString());
+
+            return values;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Timers;
 namespace NNSG
 {
     /// <summary>
-    /// Keep track of each day
+    /// Keep track of each day for a specific simulation
     /// </summary>
     class Logger
     {
