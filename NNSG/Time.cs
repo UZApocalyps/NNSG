@@ -74,6 +74,8 @@ namespace NNSG
 
         public void TickAll()
         {
+            Dictionary<string, float> cachedValues = Tools.CacheValues();
+
             for (int i = 0; i < subscribers.Count; i++)
             {
                 if (subscribers[i] != null)
@@ -82,6 +84,8 @@ namespace NNSG
                 }
 
             }
+
+            Logger.GetInstance().LogDay(cachedValues, Tools.CacheValues());
 
             elaspedTime++;
         }

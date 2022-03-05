@@ -21,5 +21,16 @@ namespace NNSG
 
             return instance;
         }
+
+        /// <summary>
+        /// Write in log files to keep track on what's going on
+        /// </summary>
+        /// <param name="oldValues">Resources values before passing a day</param>
+        /// <param name="newValues">Resourvces values after</param>
+        public void LogDay(Dictionary<string, float> oldValues, Dictionary<string, float> newValues)
+        {
+            
+        }
     }
+
 }
