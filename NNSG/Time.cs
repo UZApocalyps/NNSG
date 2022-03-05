@@ -85,7 +85,7 @@ namespace NNSG
 
             }
 
-            Logger.GetInstance().LogDay(cachedValues, Tools.CacheValues());
+            Logger.LogDay(cachedValues, Tools.CacheValues());
 
             elaspedTime++;
         }

@@ -22,13 +22,7 @@ namespace NNSG.Commands
                 float clothDiff = (Warehouse.clothes.amount - float.Parse(args[4]));
                 float populationDiff = (Person.people.Count - float.Parse(args[5]));
 
-                UI.getInstance().Write(
-                    "Food : [" + Warehouse.food.amount + " (" + ShowDiff(foodDiff) + ")] "
-                    + " Furnitures : [" + Warehouse.furniture.amount + " (" + ShowDiff(furnitureDiff) + ")] "
-                    + " vehicles : [" + Warehouse.vehicles.amount + " (" + ShowDiff(vehicleDiff) + ")] "
-                    + " clothes : [" + Warehouse.clothes.amount + " (" + ShowDiff(clothDiff) + ")] "
-                    + " Population : [" + Person.people.Count + " (" + ShowDiff(populationDiff) + ")] "
-                    + " Day : [" + Time.GetInstance().elaspedTime + "]");
+                UI.getInstance().Write(Logger.GenerateLogLine(foodDiff, furnitureDiff, vehicleDiff, clothDiff, populationDiff));
             }
             else // Only print current values
             {
@@ -40,17 +34,6 @@ namespace NNSG.Commands
                     + "Population : [" + Person.people.Count + "] "
                     + "Day : [" + Time.GetInstance().elaspedTime + "]");
             }
-        }
-
-        /// <summary>
-        /// Convert value to string in a readable manner
-        /// e.g. : 10 -> +10 or -10 -> -10
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        string ShowDiff(float value)
-        {
-            return (Math.Sign(value) == -1 ? "-" : "+") + Math.Abs(value);
         }
     }
 }
