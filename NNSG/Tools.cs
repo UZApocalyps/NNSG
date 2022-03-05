@@ -57,7 +57,7 @@ namespace NNSG
                 return -1;
         }
         /// <summary>
-        /// Stores values in a string array to be useable with Execute command
+        /// Stores most game values in a dictionnary to "snapshot" current state
         /// </summary>
         /// <returns></returns>
         public static Dictionary<string, float> CacheValues()

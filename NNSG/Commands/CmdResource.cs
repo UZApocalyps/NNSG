@@ -42,6 +42,12 @@ namespace NNSG.Commands
             }
         }
 
+        /// <summary>
+        /// Convert value to string in a readable manner
+        /// e.g. : 10 -> +10 or -10 -> -10
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         string ShowDiff(float value)
         {
             return (Math.Sign(value) == -1 ? "-" : "+") + Math.Abs(value);
