@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Timers;
 namespace NNSG
 {
@@ -29,7 +31,8 @@ namespace NNSG
         /// <param name="newValues">Resources values after</param>
         public static void LogDay(Dictionary<string, float> oldValues, Dictionary<string, float> newValues)
         {
-            string mdr = GenerateLogLine(newValues["Food"] - oldValues["Food"], newValues["Furniture"] - oldValues["Furniture"], newValues["Vehicle"] - oldValues["Vehicle"], newValues["Cloth"] - oldValues["Cloth"], newValues["People"] - oldValues["People"]);
+            string logLine = GenerateLogLine(newValues["NNSG.Goods.Food"] - oldValues["NNSG.Goods.Food"], newValues["NNSG.Goods.Furniture"] - oldValues["NNSG.Goods.Furniture"], newValues["NNSG.Goods.Vehicles"] - oldValues["NNSG.Goods.Vehicles"], newValues["NNSG.Goods.Clothes"] - oldValues["NNSG.Goods.Clothes"], newValues["People"] - oldValues["People"]);
+            File.AppendAllText("dayslogs.txt", "Day " + Time.GetInstance().elaspedTime + " : " + logLine + "\n");
         }
 
         public static string GenerateLogLine(float foodDiff, float furnitureDiff, float vehicleDiff, float clothDiff, float populationDiff)

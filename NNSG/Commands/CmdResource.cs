@@ -16,11 +16,11 @@ namespace NNSG.Commands
         {
             if (args.Count > 1)
             {
-                float foodDiff = (Warehouse.food.amount - float.Parse(args[1]));
-                float furnitureDiff = (Warehouse.furniture.amount - float.Parse(args[2]));
-                float vehicleDiff = (Warehouse.vehicles.amount - float.Parse(args[3]));
-                float clothDiff = (Warehouse.clothes.amount - float.Parse(args[4]));
-                float populationDiff = (Person.people.Count - float.Parse(args[5]));
+                float foodDiff = (Warehouse.food.amount - float.Parse(args[0]));
+                float furnitureDiff = (Warehouse.furniture.amount - float.Parse(args[1]));
+                float vehicleDiff = (Warehouse.vehicles.amount - float.Parse(args[2]));
+                float clothDiff = (Warehouse.clothes.amount - float.Parse(args[3]));
+                float populationDiff = (Person.people.Count - float.Parse(args[4]));
 
                 UI.getInstance().Write(Logger.GenerateLogLine(foodDiff, furnitureDiff, vehicleDiff, clothDiff, populationDiff));
             }

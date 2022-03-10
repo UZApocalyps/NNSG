@@ -19,7 +19,7 @@ namespace NNSG.Commands
             Dictionary<string, float> values = Tools.CacheValues();
 
             int days = 0;
-            if (int.TryParse(args[0],out int res) && args.Count >= 1)
+            if (args.Count >= 1 && int.TryParse(args[0],out int res) )
             {
                 for (int i = 0; i < res; i++)
                 {
