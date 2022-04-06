@@ -17,11 +17,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -68,21 +64,23 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/gabrielrossier/NNSG.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+2. Open the .sln file in visual studio
+3. Rename config.example.json to config.json
+4. Run project
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Usage
+When you are playing the game with the console, you have few commands to play.
+* `help` -> will display the list of commands
+* `next` -> will skip the day
+* `next X` -> replace de X to skip an ammount of days
+* `resources` -> display the ammount of resources
+* `jobs` -> will display how many workers are in each jobs
 
 <!-- CONTACT -->
 ## Contact
