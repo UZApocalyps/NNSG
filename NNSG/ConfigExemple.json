@@ -1,0 +1,12 @@
+﻿{
+	"firstDay": 1,
+	"people": 100,
+	"food": 100,
+	"vehicles": 0,
+	"clothes": 0,
+	"furniture": 0,
+	"farmers": 30,
+	"tailors": 30,
+	"artisans": 20,
+	"mechanicians": 20
+}

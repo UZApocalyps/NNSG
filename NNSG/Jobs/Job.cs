@@ -4,20 +4,12 @@ using System.Text;
 
 namespace NNSG.Jobs
 {
-    class Job : ITick
-    {
-        private GoodType goodType;
-        public string Name;
-        public float quantityPerTick;
-        public List<Person> persons;
-
-        public Job(GoodType type)
-        {
-            goodType = type;
-            Time.GetInstance().Subscribe(this);
-        }
-        public void Ticking()
-        {
-        }
+    abstract class Job : ITick
+    {        
+        /// <summary>
+        /// How much resource is produced each tick
+        /// </summary>
+        public int quantityPerTick;
+        public abstract void Ticking();
     }
 }

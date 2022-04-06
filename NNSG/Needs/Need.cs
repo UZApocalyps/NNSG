@@ -4,23 +4,15 @@ using System.Text;
 
 namespace NNSG.Needs
 {
-    public enum NeedsType
+    abstract class Need
     {
-        hunger
-    }
-    abstract class Need : ITick
-    {
-        public float level;
-        public Person person;
-        public string name;
+        public int level;
 
-        public Need()
+        public void Update()
         {
-            Time.GetInstance().Subscribe(this);
+            Consume();
         }
 
-        public void Ticking()
-        {
-        }
+        public abstract void Consume();
     }
 }
